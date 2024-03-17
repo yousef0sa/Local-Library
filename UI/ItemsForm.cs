@@ -12,6 +12,10 @@ namespace Local_library.UI
 {
     public partial class ItemsForm : UserControl
     {
+        public string image { get; set; }
+        public string first_text { get; set; }
+        public string second_text { get; set; }
+
         public ItemsForm()
         {
             InitializeComponent();
