@@ -116,12 +116,14 @@ namespace Local_library
                 {
                     var button = new Button
                     {
+                        Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0))),
                         Text = key,
+                        ForeColor = System.Drawing.Color.Silver,
                         TextAlign = System.Drawing.ContentAlignment.MiddleLeft,
                         FlatStyle = FlatStyle.Flat,
-                        Size = new System.Drawing.Size(192, 23),
+                        Size = new System.Drawing.Size(192, 28),
                         Location = new System.Drawing.Point(3, 3),
-                        FlatAppearance = { BorderSize = 0 },
+                        FlatAppearance = { BorderSize = 1 },
                         Name = key,
                         UseVisualStyleBackColor = true
                     };

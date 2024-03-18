@@ -37,6 +37,8 @@
             // item_Panel
             // 
             this.item_Panel.AutoScroll = true;
+            this.item_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(14)))));
+            this.item_Panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.item_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.item_Panel.Location = new System.Drawing.Point(201, 0);
             this.item_Panel.Name = "item_Panel";
@@ -46,6 +48,7 @@
             // 
             // content_Panel
             // 
+            this.content_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
             this.content_Panel.Controls.Add(this.All_subjects_button);
             this.content_Panel.Dock = System.Windows.Forms.DockStyle.Left;
             this.content_Panel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
@@ -56,11 +59,13 @@
             // 
             // All_subjects_button
             // 
-            this.All_subjects_button.FlatAppearance.BorderSize = 0;
+            this.All_subjects_button.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.All_subjects_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.All_subjects_button.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.All_subjects_button.ForeColor = System.Drawing.Color.Silver;
             this.All_subjects_button.Location = new System.Drawing.Point(3, 3);
             this.All_subjects_button.Name = "All_subjects_button";
-            this.All_subjects_button.Size = new System.Drawing.Size(192, 23);
+            this.All_subjects_button.Size = new System.Drawing.Size(192, 28);
             this.All_subjects_button.TabIndex = 0;
             this.All_subjects_button.Text = "All subjects";
             this.All_subjects_button.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

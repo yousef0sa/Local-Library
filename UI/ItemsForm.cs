@@ -37,8 +37,8 @@ namespace Local_library.UI
         private async void ItemsForm_Load(object sender, EventArgs e)
         {
             // load json data into the form
-            label1.Text = title;
-            label2.Text = date;
+            label1.Text = title.Replace("\r\n", string.Empty).Replace("\n", string.Empty);
+            label2.Text = date.Replace("\r\n", string.Empty).Replace("\n", string.Empty);
 
             // Start loading the image in the background
             await Task.Run(() => LoadImage());
@@ -149,3 +149,4 @@ namespace Local_library.UI
         }
     }
 }
+
