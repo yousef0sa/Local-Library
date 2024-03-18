@@ -76,6 +76,7 @@
             this.Controls.Add(this.content_Panel);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.content_Panel.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -9,6 +9,7 @@ namespace Local_library
     public partial class Form1 : Form
     {
         private ReadJSON readJSON = new ReadJSON();
+        private string filepath = "My files\\Games.json";
         public Form1()
         {
             InitializeComponent();
@@ -26,7 +27,7 @@ namespace Local_library
         private async void All_subjects_button_Click(object sender, EventArgs e)
         {
             //get the json file path
-            readJSON.filePath = "My files\\Games.json";
+            readJSON.filePath = filepath;
 
             // clear the memory 
             item_Panel.Controls.Clear();
@@ -43,9 +44,9 @@ namespace Local_library
         /// The number of items loaded per call is determined by the ItemsPerLoad constant.
         /// </summary>
         /// <returns>A Task representing the asynchronous operation.</returns>
-        private async Task LoadItems()
+        private async Task LoadItems(string key = "")
         {
-            var items = await Task.Run(() => readJSON.GetJsonItems().Skip(itemsLoaded).Take(ItemsPerLoad));
+            var items = await Task.Run(() => readJSON.GetJsonItems(key).Skip(itemsLoaded).Take(ItemsPerLoad));
             foreach (var item in items)
             {
                 var itemControl = new ItemsForm
@@ -91,5 +92,50 @@ namespace Local_library
                 GC.Collect();
             }
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // load the content buttons
+            loadContentButtons();
+        }
+
+        #region private function
+
+        /// <summary>
+        /// Loads content buttons for each key in the JSON file.
+        /// If the file path exists, it creates a button for each key in the JSON file and adds the button to the content_Panel.
+        /// </summary>
+        private void loadContentButtons()
+        {
+            //if the file path exists make button for each key in the json file and add the button in the content_Panel
+            if (System.IO.File.Exists(filepath))
+            {
+                readJSON.filePath = filepath;
+                var keys = readJSON.GetJsonKeys();
+                foreach (var key in keys)
+                {
+                    var button = new Button
+                    {
+                        Text = key,
+                        TextAlign = System.Drawing.ContentAlignment.MiddleLeft,
+                        FlatStyle = FlatStyle.Flat,
+                        Size = new System.Drawing.Size(192, 23),
+                        Location = new System.Drawing.Point(3, 3),
+                        FlatAppearance = { BorderSize = 0 },
+                        Name = key,
+                        UseVisualStyleBackColor = true
+                    };
+                    button.Click += async (s, ev) =>
+                    {
+                        item_Panel.Controls.Clear();
+                        itemsLoaded = 0;
+                        GC.Collect();
+                        await LoadItems(key);
+                    };
+                    content_Panel.Controls.Add(button);
+                }
+            }
+        }
+        #endregion
     }
 }
