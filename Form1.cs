@@ -1,4 +1,5 @@
-﻿using Local_library.UI;
+﻿using ComponentFactory.Krypton.Toolkit;
+using Local_library.UI;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -114,19 +115,53 @@ namespace Local_library
                 var keys = readJSON.GetJsonKeys();
                 foreach (var key in keys)
                 {
-                    var button = new Button
+                    var button = new KryptonButton
                     {
-                        Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0))),
                         Text = key,
-                        ForeColor = System.Drawing.Color.Silver,
-                        TextAlign = System.Drawing.ContentAlignment.MiddleLeft,
-                        FlatStyle = FlatStyle.Flat,
-                        Size = new System.Drawing.Size(192, 28),
+                        ButtonStyle = ButtonStyle.NavigatorStack,
                         Location = new System.Drawing.Point(3, 3),
-                        FlatAppearance = { BorderSize = 1 },
-                        Name = key,
-                        UseVisualStyleBackColor = true
+                        OverrideDefault =
+                        {
+                            Back =
+                            {
+                                Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(76)))), ((int)(((byte)(117))))),
+                            }
+                        },
+                        Size = new System.Drawing.Size(192, 25),
+                        StateCommon =
+                        {
+                            Back =
+                            {
+                                Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44))))),
+                                Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44))))),
+                            },
+                            Content =
+                            {
+                                LongText =
+                                {
+                                    Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250))))),
+                                    Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250))))),
+                                    Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold),
+                                },
+                                ShortText =
+                                {
+                                    Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250))))),
+                                    Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250))))),
+                                    Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold),
+                                }
+                            }
+                        },
+                        StateTracking =
+                        {
+                            Back =
+                            {
+                                Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(76)))), ((int)(((byte)(117))))),
+                                Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(76)))), ((int)(((byte)(117))))),
+                            }
+                        }
                     };
+
+
                     button.Click += async (s, ev) =>
                     {
                         item_Panel.Controls.Clear();
@@ -141,3 +176,5 @@ namespace Local_library
         #endregion
     }
 }
+
+
