@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Local_library
 {
@@ -41,6 +39,10 @@ namespace Local_library
         /// <returns>A list of items retrieved from the JSON file.</returns>
         public List<items> GetJsonItems(string JsonKey = "")
         {
+            if (string.IsNullOrEmpty(filePath))
+            {
+                throw new ArgumentException("File path cannot be null or empty", "path");
+            }
             using (StreamReader r = new StreamReader(filePath))
             {
                 string json = r.ReadToEnd();
@@ -52,8 +54,5 @@ namespace Local_library
                 return jsonObject.Values.SelectMany(x => x).ToList();
             }
         }
-
-
-
     }
 }
