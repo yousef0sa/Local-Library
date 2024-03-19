@@ -1,6 +1,7 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
 using Local_library.UI;
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -11,6 +12,7 @@ namespace Local_library
     {
         private ReadJSON readJSON = new ReadJSON();
         private string filepath = "My files\\Games.json";
+        private string keySelected = "";
         public Form1()
         {
             InitializeComponent();
@@ -33,11 +35,12 @@ namespace Local_library
             // clear the memory 
             item_Panel.Controls.Clear();
             itemsLoaded = 0;
+            keySelected = "";
             GC.Collect();
 
 
             // Load initial items
-            await LoadItems();
+            await LoadItems(keySelected);
         }
 
         /// <summary>
@@ -45,7 +48,7 @@ namespace Local_library
         /// The number of items loaded per call is determined by the ItemsPerLoad constant.
         /// </summary>
         /// <returns>A Task representing the asynchronous operation.</returns>
-        private async Task LoadItems(string key = "")
+        private async Task LoadItems(string key)
         {
             var items = await Task.Run(() => readJSON.GetJsonItems(key).Skip(itemsLoaded).Take(ItemsPerLoad));
             foreach (var item in items)
@@ -73,7 +76,7 @@ namespace Local_library
             // If scrolled to bottom
             if (item_Panel.VerticalScroll.Value >= item_Panel.VerticalScroll.Maximum - item_Panel.VerticalScroll.LargeChange)
             {
-                await LoadItems();
+                await LoadItems(keySelected);
                 // clear the memory 
                 GC.Collect();
             }
@@ -88,7 +91,7 @@ namespace Local_library
             // If scrolled to bottom
             if (item_Panel.VerticalScroll.Value >= item_Panel.VerticalScroll.Maximum - item_Panel.VerticalScroll.LargeChange)
             {
-                await LoadItems();
+                await LoadItems(keySelected);
                 // clear the memory 
                 GC.Collect();
             }
@@ -160,11 +163,10 @@ namespace Local_library
                             }
                         }
                     };
-
-
                     button.Click += async (s, ev) =>
                     {
                         item_Panel.Controls.Clear();
+                        keySelected = key;
                         itemsLoaded = 0;
                         GC.Collect();
                         await LoadItems(key);
@@ -174,7 +176,108 @@ namespace Local_library
             }
         }
         #endregion
+
+        #region window border panel
+
+        #region move window
+        private bool dragging = false;
+        private Point dragCursorPoint;
+        private Point dragFormPoint;
+        private void Window_Border_panel_MouseDown(object sender, MouseEventArgs e)
+        {
+            dragging = true;
+            dragCursorPoint = Cursor.Position;
+            dragFormPoint = this.Location;
+        }
+
+        private void Window_Border_panel_MouseUp(object sender, MouseEventArgs e)
+        {
+            dragging = false;
+        }
+
+        private void Window_Border_panel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (dragging)
+            {
+                Point dif = Point.Subtract(Cursor.Position, new Size(dragCursorPoint));
+                this.Location = Point.Add(dragFormPoint, new Size(dif));
+            }
+        }
+        #endregion
+
+        #region button events (minimize, maximize, close)
+        private void exit_button_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        private void maximize_button_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+        }
+        private void minimize_button_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Window Form1 events
+        // resize the window by dragging the border edges
+        protected override void WndProc(ref Message m)
+        {
+            const int WM_NCHITTEST = 0x0084;
+            const int HTLEFT = 10;
+            const int HTRIGHT = 11;
+            const int HTBOTTOMRIGHT = 17;
+            const int HTBOTTOM = 15;
+            const int HTBOTTOMLEFT = 16;
+            const int HTTOP = 12;
+            const int HTTOPLEFT = 13;
+            const int HTTOPRIGHT = 14;
+            const int BORDER_WIDTH = 10; // you can rename this variable if you like
+
+            if (m.Msg == WM_NCHITTEST)
+            {
+                // get the mouse position (in screen coordinates)
+                Point pos = new Point(m.LParam.ToInt32() & 0xffff, m.LParam.ToInt32() >> 16);
+                pos = this.PointToClient(pos); // convert to client coordinates
+
+                // check if the mouse is within the resizable border (defined by BORDER_WIDTH)
+                if (pos.X <= BORDER_WIDTH && pos.Y <= BORDER_WIDTH)
+                    m.Result = (IntPtr)HTTOPLEFT;
+                else if (pos.X >= this.ClientSize.Width - BORDER_WIDTH && pos.Y <= BORDER_WIDTH)
+                    m.Result = (IntPtr)HTTOPRIGHT;
+                else if (pos.X >= this.ClientSize.Width - BORDER_WIDTH && pos.Y >= this.ClientSize.Height - BORDER_WIDTH)
+                    m.Result = (IntPtr)HTBOTTOMRIGHT;
+                else if (pos.X <= BORDER_WIDTH && pos.Y >= this.ClientSize.Height - BORDER_WIDTH)
+                    m.Result = (IntPtr)HTBOTTOMLEFT;
+                else if (pos.Y <= BORDER_WIDTH)
+                    m.Result = (IntPtr)HTTOP;
+                else if (pos.X >= this.ClientSize.Width - BORDER_WIDTH)
+                    m.Result = (IntPtr)HTRIGHT;
+                else if (pos.Y >= this.ClientSize.Height - BORDER_WIDTH)
+                    m.Result = (IntPtr)HTBOTTOM;
+                else if (pos.X <= BORDER_WIDTH)
+                    m.Result = (IntPtr)HTLEFT;
+                else
+                    base.WndProc(ref m); // let the base class handle it
+            }
+            else
+            {
+                base.WndProc(ref m);
+            }
+        }
+
+        #endregion
     }
 }
-
-
