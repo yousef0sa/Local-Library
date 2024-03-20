@@ -1,6 +1,7 @@
 ﻿using ComponentFactory.Krypton.Toolkit;
 using Local_library.UI;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
@@ -48,9 +49,24 @@ namespace Local_library
         /// The number of items loaded per call is determined by the ItemsPerLoad constant.
         /// </summary>
         /// <returns>A Task representing the asynchronous operation.</returns>
-        private async Task LoadItems(string key)
+        private async Task LoadItems(string key, string searchText = null)
         {
-            var items = await Task.Run(() => readJSON.GetJsonItems(key).Skip(itemsLoaded).Take(ItemsPerLoad));
+            IEnumerable<items> items;
+
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                items = await Task.Run(() => readJSON.GetJsonItems()
+                    .Where(x => x.title.ToLower().Contains(searchText.ToLower()))
+                    .Skip(itemsLoaded)
+                    .Take(ItemsPerLoad));
+            }
+            else
+            {
+                items = await Task.Run(() => readJSON.GetJsonItems(key)
+                    .Skip(itemsLoaded)
+                    .Take(ItemsPerLoad));
+            }
+
             foreach (var item in items)
             {
                 var itemControl = new ItemsForm
@@ -66,21 +82,26 @@ namespace Local_library
         }
 
 
+
+
+        private bool isLoading = false;
         /// <summary>
         /// Handles the MouseWheel event of the item_Panel control.
-        /// This method is triggered when the mouse wheel is scrolled.
-        /// If the scroll position is at the bottom, it loads more items.
+        /// If the scroll position is at the bottom and not currently loading, it loads more items.
         /// </summary>
         private async void item_Panel_MouseWheel(object sender, MouseEventArgs e)
         {
-            // If scrolled to bottom
-            if (item_Panel.VerticalScroll.Value >= item_Panel.VerticalScroll.Maximum - item_Panel.VerticalScroll.LargeChange)
+            // If scrolled to bottom and not currently loading
+            if (!isLoading && item_Panel.VerticalScroll.Value >= item_Panel.VerticalScroll.Maximum - item_Panel.VerticalScroll.LargeChange)
             {
-                await LoadItems(keySelected);
+                isLoading = true;
+                await LoadItems(keySelected, Search_kryptonTextBox.Text);
                 // clear the memory 
                 GC.Collect();
+                isLoading = false;
             }
         }
+
 
         /// <summary>
         /// Handles the Scroll event of the item_Panel control.
@@ -91,10 +112,11 @@ namespace Local_library
             // If scrolled to bottom
             if (item_Panel.VerticalScroll.Value >= item_Panel.VerticalScroll.Maximum - item_Panel.VerticalScroll.LargeChange)
             {
-                await LoadItems(keySelected);
+                await LoadItems(keySelected, Search_kryptonTextBox.Text);
                 // clear the memory 
                 GC.Collect();
             }
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -277,7 +299,21 @@ namespace Local_library
                 base.WndProc(ref m);
             }
         }
-
         #endregion
+
+        /// <summary>
+        /// Event handler for the TextChanged event of the Search_kryptonTextBox control.
+        /// Clears the item_Panel control and loads a new set of items from the Games.json file that match the search text.
+        /// </summary>
+        private async void Search_kryptonTextBox_TextChanged(object sender, EventArgs e)
+        {
+            // search the items in the json file
+            item_Panel.Controls.Clear();
+            itemsLoaded = 0;
+            GC.Collect();
+            var search = Search_kryptonTextBox.Text;
+            await LoadItems(keySelected, search);
+        }
+
     }
 }
