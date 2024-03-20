@@ -123,6 +123,9 @@ namespace Local_library
         {
             // load the content buttons
             loadContentButtons();
+
+            // Set up auto-complete
+            Search_kryptonTextBox.AutoCompleteCustomSource = readJSON.GetTitles();
         }
 
         #region private function
@@ -314,6 +317,5 @@ namespace Local_library
             var search = Search_kryptonTextBox.Text;
             await LoadItems(keySelected, search);
         }
-
     }
 }

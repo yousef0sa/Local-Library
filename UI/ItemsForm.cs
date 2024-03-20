@@ -96,7 +96,7 @@ namespace Local_library.UI
                                         Console.WriteLine("An error occurred while saving the image to the local storage.");
                                         this.Invoke((MethodInvoker)delegate
                                         {
-                                            MessageBox.Show("An error occurred while saving the image to the local storage. Please check your disk space and try again.");
+                                            //MessageBox.Show("An error occurred while saving the image to the local storage. Please check your disk space and try again.");
                                         });
                                     }
 
@@ -119,7 +119,8 @@ namespace Local_library.UI
                         Console.WriteLine(ex.ToString());
                         this.Invoke((MethodInvoker)delegate
                         {
-                            MessageBox.Show("An error occurred while downloading the image. Please check your network connection and try again.");
+                            //MessageBox.Show("An error occurred while downloading the image. Please check your network connection and try again.");
+
                         });
                     }
                 }

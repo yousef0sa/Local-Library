@@ -68,6 +68,8 @@
             // 
             // Search_kryptonTextBox
             // 
+            this.Search_kryptonTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.Search_kryptonTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.Search_kryptonTextBox.Location = new System.Drawing.Point(3, 3);
             this.Search_kryptonTextBox.Name = "Search_kryptonTextBox";
             this.Search_kryptonTextBox.Size = new System.Drawing.Size(192, 29);

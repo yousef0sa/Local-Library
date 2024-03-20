@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Local_library
 {
@@ -53,6 +54,20 @@ namespace Local_library
                 }
                 return jsonObject.Values.SelectMany(x => x).ToList();
             }
+        }
+        /// <summary>
+        /// Retrieves a collection of titles from the JSON items.
+        /// </summary>
+        /// <returns>An AutoCompleteStringCollection containing the titles of the items.</returns>
+        public AutoCompleteStringCollection GetTitles()
+        {
+            var titles = new AutoCompleteStringCollection();
+            var items = this.GetJsonItems();
+            foreach (var item in items)
+            {
+                titles.Add(item.title);
+            }
+            return titles;
         }
     }
 }
