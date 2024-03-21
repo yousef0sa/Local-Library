@@ -11,7 +11,7 @@ namespace Local_library
     {
         public string image { get; set; }
         public string title { get; set; }
-        public string date { get; set; }
+        public string info { get; set; }
         public string link { get; set; }
     }
 

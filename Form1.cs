@@ -73,13 +73,14 @@ namespace Local_library
                 {
                     image = item.image,
                     title = item.title,
-                    date = item.date,
+                    info = item.info,
                     link = item.link
                 };
                 item_Panel.Controls.Add(itemControl);
             }
             itemsLoaded += items.Count();
         }
+
 
 
 
