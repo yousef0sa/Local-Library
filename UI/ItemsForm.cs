@@ -67,51 +67,67 @@ namespace Local_library.UI
                 {
                     try
                     {
-                        // Ensure the URL is correctly formatted
-                        Uri imageUri = new Uri(this.image);
-                        byte[] bytes = await wc.DownloadDataTaskAsync(imageUri);
-                        await Task.Run(() =>
+                        if (!string.IsNullOrEmpty(this.image))
                         {
-                            using (MemoryStream ms = new MemoryStream(bytes))
+                            // Ensure the URL is correctly formatted
+                            Uri imageUri = new Uri(this.image);
+                            byte[] bytes = await wc.DownloadDataTaskAsync(imageUri);
+                            await Task.Run(() =>
                             {
-                                using (MagickImage magickImage = new MagickImage(ms))
+                                using (MemoryStream ms = new MemoryStream(bytes))
                                 {
-                                    magickImage.Format = MagickFormat.Png;
-                                    byte[] imageBytes;
-                                    using (MemoryStream output = new MemoryStream())
+                                    using (MagickImage magickImage = new MagickImage(ms))
                                     {
-                                        magickImage.Write(output);
-                                        output.Position = 0;
-                                        imageBytes = output.ToArray(); // Save the bytes to a variable
-                                    }
+                                        magickImage.Format = MagickFormat.Png;
+                                        byte[] imageBytes;
+                                        using (MemoryStream output = new MemoryStream())
+                                        {
+                                            magickImage.Write(output);
+                                            output.Position = 0;
+                                            imageBytes = output.ToArray(); // Save the bytes to a variable
+                                        }
 
-                                    try
-                                    {
-                                        // Save the image locally
-                                        File.WriteAllBytes(localImagePath, imageBytes);
-                                    }
-                                    catch
-                                    {
-                                        // Log the exception and show a user-friendly message
-                                        Console.WriteLine("An error occurred while saving the image to the local storage.");
+                                        try
+                                        {
+                                            // Save the image locally
+                                            File.WriteAllBytes(localImagePath, imageBytes);
+                                        }
+                                        catch
+                                        {
+                                            // Log the exception and show a user-friendly message
+                                            Console.WriteLine("An error occurred while saving the image to the local storage.");
+                                            this.Invoke((MethodInvoker)delegate
+                                            {
+                                                //MessageBox.Show("An error occurred while saving the image to the local storage. Please check your disk space and try again.");
+                                            });
+                                        }
+
+                                        // Update the PictureBox on the UI thread
                                         this.Invoke((MethodInvoker)delegate
                                         {
-                                            //MessageBox.Show("An error occurred while saving the image to the local storage. Please check your disk space and try again.");
+                                            if (pictureBox1.Image != null)
+                                            {
+                                                pictureBox1.Image.Dispose(); // Dispose the old image if it exists
+                                            }
+                                            pictureBox1.Image = new Bitmap(new MemoryStream(imageBytes));
                                         });
                                     }
-
-                                    // Update the PictureBox on the UI thread
-                                    this.Invoke((MethodInvoker)delegate
-                                    {
-                                        if (pictureBox1.Image != null)
-                                        {
-                                            pictureBox1.Image.Dispose(); // Dispose the old image if it exists
-                                        }
-                                        pictureBox1.Image = new Bitmap(new MemoryStream(imageBytes));
-                                    });
                                 }
-                            }
-                        });
+                            });
+                        }
+                        else
+                        {
+                            //change image to Local_library.Properties.Resources.no_image_available
+                            this.Invoke((MethodInvoker)delegate
+                            {
+                                if (pictureBox1.Image != null)
+                                {
+                                    pictureBox1.Image.Dispose(); // Dispose the old image if it exists
+                                }
+                                pictureBox1.Image = Local_library.Properties.Resources.no_image_available;
+
+                            });
+                        }
                     }
                     catch (System.Net.WebException ex)
                     {
