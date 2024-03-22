@@ -12,22 +12,23 @@ namespace Local_library
     public partial class Form1 : Form
     {
         private ReadJSON readJSON = new ReadJSON();
-        private string filepath = "My files\\Games.json";
+        private string filepath = "My files\\Games.json"; // setting the file path
         private string keySelected = "";
+        private int currentPage = 1;
+        private int totalPages = 0;
+        private int itemsLoaded = 0;
+        private const int ItemsPerLoad = 100; // setting the number of items to load per page
+
         public Form1()
         {
             InitializeComponent();
-            // Handle mouse wheel scrolling
-            item_Panel.MouseWheel += item_Panel_MouseWheel;
         }
 
-        private int itemsLoaded = 0;
-        private const int ItemsPerLoad = 45;
-
         /// <summary>
-        /// Asynchronously loads items from a JSON file and adds them to the item_Panel control.
-        /// The number of items loaded per call is determined by the ItemsPerLoad constant.
+        /// Asynchronously loads items from a JSON file into the item_Panel control.
         /// </summary>
+        /// <param name="key">The key in the JSON file to load items from.</param>
+        /// <param name="searchText">Optional parameter. If provided, only items that contain the search text in their title will be loaded.</param>
         /// <returns>A Task representing the asynchronous operation.</returns>
         private async Task LoadItems(string key, string searchText = null)
         {
@@ -59,45 +60,9 @@ namespace Local_library
                 item_Panel.Controls.Add(itemControl);
             }
             itemsLoaded += items.Count();
-        }
 
-
-
-
-
-        private bool isLoading = false;
-        /// <summary>
-        /// Handles the MouseWheel event of the item_Panel control.
-        /// If the scroll position is at the bottom and not currently loading, it loads more items.
-        /// </summary>
-        private async void item_Panel_MouseWheel(object sender, MouseEventArgs e)
-        {
-            // If scrolled to bottom and not currently loading
-            if (!isLoading && item_Panel.VerticalScroll.Value >= item_Panel.VerticalScroll.Maximum - item_Panel.VerticalScroll.LargeChange)
-            {
-                isLoading = true;
-                await LoadItems(keySelected, Search_kryptonTextBox.Text);
-                // clear the memory 
-                GC.Collect();
-                isLoading = false;
-            }
-        }
-
-
-        /// <summary>
-        /// Handles the Scroll event of the item_Panel control.
-        /// If the scroll position is at the bottom, it loads more items.
-        /// </summary>
-        private async void item_Panel_Scroll(object sender, ScrollEventArgs e)
-        {
-            // If scrolled to bottom
-            if (item_Panel.VerticalScroll.Value >= item_Panel.VerticalScroll.Maximum - item_Panel.VerticalScroll.LargeChange)
-            {
-                await LoadItems(keySelected, Search_kryptonTextBox.Text);
-                // clear the memory 
-                GC.Collect();
-            }
-
+            // Disable the "Next" button if there are no more items to load
+            Next_kryptonButton.Enabled = items.Count() == ItemsPerLoad;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -109,7 +74,7 @@ namespace Local_library
             Search_kryptonTextBox.AutoCompleteCustomSource = readJSON.GetTitles();
         }
 
-        #region load Content Buttons
+        #region {load Content} Buttons
 
         /// <summary>
         /// Loads content buttons for each key in the JSON file.
@@ -189,8 +154,11 @@ namespace Local_library
                         item_Panel.Controls.Clear();
                         keySelected = key;
                         itemsLoaded = 0;
+                        currentPage = 1;
                         GC.Collect();
                         await LoadItems(key);
+                        UpdatePagesLabel();
+                        UpdateItemsLabel();
                     };
                     content_Panel.Controls.Add(button);
                 }
@@ -300,6 +268,7 @@ namespace Local_library
         }
         #endregion
 
+        #region {Search} TextBox
         /// <summary>
         /// Event handler for the TextChanged event of the Search_kryptonTextBox control.
         /// Clears the item_Panel control and loads a new set of items from the Games.json file that match the search text.
@@ -311,7 +280,108 @@ namespace Local_library
             itemsLoaded = 0;
             GC.Collect();
             var search = Search_kryptonTextBox.Text;
+
             await LoadItems(keySelected, search);
         }
+
+        /// <summary>
+        /// Handles the TextChanged event of the Search_Page_kryptonTextBox control.
+        /// If the entered page number is valid, it clears the item_Panel control and loads the items for the specified page.
+        /// </summary>
+        private async void Search_Page_kryptonTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(Search_Page_kryptonTextBox.Text, out int page))
+            {
+                if (page > 0 && page <= totalPages)
+                {
+                    currentPage = page;
+                    itemsLoaded = (currentPage - 1) * ItemsPerLoad; // Update itemsLoaded based on the new page number
+                    item_Panel.Controls.Clear();
+                    GC.Collect();
+                    UpdatePagesLabel();
+
+                    await LoadItems(keySelected, Search_kryptonTextBox.Text);
+                }
+            }
+        }
+        #endregion
+
+        #region {Next and Previous} Buttons
+        /// <summary>
+        /// Handles the Click event of the Next_kryptonButton control.
+        /// If the current page is less than the total pages, it increments the currentPage by 1, clears the item_Panel control, 
+        /// and loads the items for the next page.
+        /// </summary>
+        private async void Next_kryptonButton_Click(object sender, EventArgs e)
+        {
+            if (keySelected == "")
+            {
+                return;
+            }
+            if (currentPage < totalPages)
+            {
+                currentPage++;
+                item_Panel.Controls.Clear();
+                GC.Collect();
+                UpdatePagesLabel();
+
+                await LoadItems(keySelected, Search_kryptonTextBox.Text);
+            }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the Previous_kryptonButton control.
+        /// If the current page is greater than 1, it decreases the currentPage by 1, clears the item_Panel control, 
+        /// and loads the items for the previous page.
+        /// </summary>
+        private async void Previous_kryptonButton_Click(object sender, EventArgs e)
+        {
+            if (keySelected == "")
+            {
+                return;
+            }
+            if (currentPage > 1)
+            {
+                currentPage--;
+                itemsLoaded -= ItemsPerLoad * 2; // Subtract twice the ItemsPerLoad to go back to the previous page
+                if (itemsLoaded < 0) itemsLoaded = 0; // Ensure itemsLoaded doesn't go below 0
+                item_Panel.Controls.Clear();
+                GC.Collect();
+                UpdatePagesLabel();
+
+                await LoadItems(keySelected, Search_kryptonTextBox.Text);
+            }
+        }
+        #endregion
+
+        #region {Update Pages and Items} Labels
+        /// <summary>
+        /// Updates the Items_label with the total number of items.
+        /// The total items are calculated based on the items in the JSON file for the selected key.
+        /// </summary>
+        private void UpdateItemsLabel()
+        {
+
+            int totalItems = readJSON.GetJsonItems(keySelected).Count();
+            Items_label.Text = $"Total Items: {totalItems}";
+        }
+        /// <summary>
+        /// Updates the Pages_label with the current page and total pages.
+        /// The total pages are calculated based on the total items and items per load.
+        /// </summary>
+        private void UpdatePagesLabel()
+        {
+            // Calculate total pages
+            int totalItems = readJSON.GetJsonItems(keySelected).Count();
+            totalPages = (int)Math.Ceiling((double)totalItems / ItemsPerLoad);
+
+            Pages_label.Text = $"Page: {currentPage} - {totalPages}";
+
+            Search_Page_kryptonTextBox.Text = currentPage.ToString();
+
+        }
+        #endregion
+
+
     }
 }
