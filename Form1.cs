@@ -25,26 +25,6 @@ namespace Local_library
         private const int ItemsPerLoad = 45;
 
         /// <summary>
-        /// Event handler for the All_subjects_button click event.
-        /// Clears the item_Panel control and loads a new set of items from the Games.json file.
-        /// </summary>
-        private async void All_subjects_button_Click(object sender, EventArgs e)
-        {
-            //get the json file path
-            readJSON.filePath = filepath;
-
-            // clear the memory 
-            item_Panel.Controls.Clear();
-            itemsLoaded = 0;
-            keySelected = "";
-            GC.Collect();
-
-
-            // Load initial items
-            await LoadItems(keySelected);
-        }
-
-        /// <summary>
         /// Asynchronously loads items from a JSON file and adds them to the item_Panel control.
         /// The number of items loaded per call is determined by the ItemsPerLoad constant.
         /// </summary>
