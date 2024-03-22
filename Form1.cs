@@ -129,12 +129,13 @@ namespace Local_library
             Search_kryptonTextBox.AutoCompleteCustomSource = readJSON.GetTitles();
         }
 
-        #region private function
+        #region load Content Buttons
 
         /// <summary>
         /// Loads content buttons for each key in the JSON file.
         /// If the file path exists, it creates a button for each key in the JSON file and adds the button to the content_Panel.
         /// </summary>
+        private KryptonButton selectedButton = null;
         private void loadContentButtons()
         {
             //if the file path exists make button for each key in the json file and add the button in the content_Panel
@@ -191,6 +192,20 @@ namespace Local_library
                     };
                     button.Click += async (s, ev) =>
                     {
+                        // If another button was previously selected, reset its appearance
+                        if (selectedButton != null)
+                        {
+                            selectedButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
+                            selectedButton.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
+                        }
+
+                        // Update the appearance of the newly selected button
+                        button.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(76)))), ((int)(((byte)(117)))));
+                        button.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(76)))), ((int)(((byte)(117)))));
+
+                        // Store the newly selected button
+                        selectedButton = button;
+
                         item_Panel.Controls.Clear();
                         keySelected = key;
                         itemsLoaded = 0;

@@ -109,7 +109,7 @@ namespace Local_library.UI
                                             {
                                                 pictureBox1.Image.Dispose(); // Dispose the old image if it exists
                                             }
-                                            pictureBox1.Image = new Bitmap(new MemoryStream(imageBytes));
+                                            pictureBox1.Image = Image.FromStream(new MemoryStream(imageBytes));
                                         });
                                     }
                                 }
@@ -150,7 +150,7 @@ namespace Local_library.UI
                     {
                         pictureBox1.Image.Dispose(); // Dispose the old image if it exists
                     }
-                    pictureBox1.Image = new Bitmap(localImagePath);
+                    pictureBox1.Image = Image.FromFile(localImagePath);
                 });
             }
         }
