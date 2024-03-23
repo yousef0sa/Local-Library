@@ -12,6 +12,7 @@ namespace Local_library
     public partial class Form1 : Form
     {
         private ReadJSON readJSON = new ReadJSON();
+        private GetNumbers getNumbers;
         private string filepath = "My files\\Games.json"; // setting the file path
         private string keySelected = "";
         private int currentPage = 1;
@@ -20,9 +21,22 @@ namespace Local_library
         private Task searchTask = null;
         private const int ItemsPerLoad = 100; // setting the number of items to load per page
 
+        #region Get && Set
+        public string FilePath
+        {
+            get { return filepath; }
+            set { filepath = value; }
+        }
+
+        public string Search_Text
+        {
+            get { return Search_kryptonTextBox.Text; }
+        }
+        #endregion
         public Form1()
         {
             InitializeComponent();
+            getNumbers = new GetNumbers(this);
         }
 
         /// <summary>
@@ -31,7 +45,7 @@ namespace Local_library
         /// <param name="key">The key in the JSON file to load items from.</param>
         /// <param name="searchText">Optional parameter. If provided, only items that contain the search text in their title will be loaded.</param>
         /// <returns>A Task representing the asynchronous operation.</returns>
-        private async Task LoadItems(string key, string searchText = null)
+        private async Task LoadItems(string key, string searchText)
         {
             IEnumerable<items> items;
 
@@ -61,6 +75,7 @@ namespace Local_library
                 item_Panel.Controls.Add(itemControl);
             }
             itemsLoaded += items.Count();
+
 
             // Disable the "Next" button if there are no more items to load
             Next_kryptonButton.Enabled = items.Count() == ItemsPerLoad;
@@ -156,10 +171,11 @@ namespace Local_library
                         keySelected = key;
                         itemsLoaded = 0;
                         currentPage = 1;
+                        Search_kryptonTextBox.Text = "";
                         GC.Collect();
-                        await LoadItems(key);
-                        UpdatePagesLabel();
-                        UpdateItemsLabel();
+                        await LoadItems(key, Search_Text);
+                        UpdatePagesLabel(Search_Text);
+                        UpdateItemsLabel(Search_Text);
                     };
                     content_Panel.Controls.Add(button);
                 }
@@ -271,7 +287,7 @@ namespace Local_library
 
         #region {Search} TextBox
 
-        private async void Search_kryptonTextBox_TextChanged(object sender, EventArgs e)
+        private void Search_kryptonTextBox_TextChanged(object sender, EventArgs e)
         {
             // Cancel the previous search if it's still running
             if (searchTask != null && !searchTask.IsCompleted)
@@ -292,15 +308,15 @@ namespace Local_library
                     itemsLoaded = 0;
                     GC.Collect();
                     var search = Search_kryptonTextBox.Text;
-
-                    await LoadItems(keySelected, search);
-
-                    // Update the items and pages labels
                     UpdateItemsLabel(search);
                     UpdatePagesLabel(search);
+
+                    await LoadItems("", search);
+
                 }));
 
             });
+
         }
 
         /// <summary>
@@ -317,7 +333,7 @@ namespace Local_library
                     itemsLoaded = (currentPage - 1) * ItemsPerLoad; // Update itemsLoaded based on the new page number
                     item_Panel.Controls.Clear();
                     GC.Collect();
-                    UpdatePagesLabel();
+                    UpdatePagesLabel(Search_Text);
 
                     await LoadItems(keySelected, Search_kryptonTextBox.Text);
                 }
@@ -331,15 +347,14 @@ namespace Local_library
         /// If the current page is less than the total pages, it increments the currentPage by 1, clears the item_Panel control, 
         /// and loads the items for the next page.
         /// </summary>
-        private async void Next_kryptonButton_Click(object sender, EventArgs e)
+        private void Next_kryptonButton_Click(object sender, EventArgs e)
         {
             if (currentPage < totalPages)
             {
                 currentPage++;
                 item_Panel.Controls.Clear();
                 GC.Collect();
-                UpdatePagesLabel();
-                await LoadItems(keySelected, Search_kryptonTextBox.Text);
+                UpdatePagesLabel(Search_Text);
             }
         }
 
@@ -348,7 +363,7 @@ namespace Local_library
         /// If the current page is greater than 1, it decreases the currentPage by 1, clears the item_Panel control, 
         /// and loads the items for the previous page.
         /// </summary>
-        private async void Previous_kryptonButton_Click(object sender, EventArgs e)
+        private void Previous_kryptonButton_Click(object sender, EventArgs e)
         {
             if (currentPage > 1)
             {
@@ -357,42 +372,42 @@ namespace Local_library
                 if (itemsLoaded < 0) itemsLoaded = 0; // Ensure itemsLoaded doesn't go below 0
                 item_Panel.Controls.Clear();
                 GC.Collect();
-                UpdatePagesLabel();
-
-                await LoadItems(keySelected, Search_kryptonTextBox.Text);
+                UpdatePagesLabel(Search_Text);
             }
         }
         #endregion
 
         #region {Update Pages and Items} Labels
-        private void UpdateItemsLabel(string searchText = null)
+        private void UpdateItemsLabel(string searchText)
         {
             int totalItems;
             if (!string.IsNullOrEmpty(searchText))
             {
-                totalItems = readJSON.GetJsonItems()
-                    .Where(x => x.title.ToLower().Contains(searchText.ToLower()))
-                    .Count();
+                totalItems = getNumbers.GetTotalItemsFormTitle(searchText);
             }
             else
             {
-                totalItems = readJSON.GetJsonItems(keySelected).Count();
+                totalItems = getNumbers.GetTotalItemsWithJsonKey(keySelected);
             }
             Items_label.Text = $"Total Items: {totalItems}";
         }
-        private void UpdatePagesLabel(string searchText = null)
+        /// <summary>
+        /// Updates the Pages_label text to display the current page and total pages.
+        /// If a search text is provided, it calculates the total pages based on the number of items that contain the search text.
+        /// Otherwise, it calculates the total pages based on the number of items for the selected key.
+        /// </summary>
+        /// <param name="searchText">The text to search for in the item titles.</param>
+        private void UpdatePagesLabel(string searchText)
         {
             // Calculate total pages
             int totalItems;
             if (!string.IsNullOrEmpty(searchText))
             {
-                totalItems = readJSON.GetJsonItems()
-                    .Where(x => x.title.ToLower().Contains(searchText.ToLower()))
-                    .Count();
+                totalItems = getNumbers.GetTotalItemsFormTitle(searchText);
             }
             else
             {
-                totalItems = readJSON.GetJsonItems(keySelected).Count();
+                totalItems = getNumbers.GetTotalItemsWithJsonKey(keySelected);
             }
             totalPages = (int)Math.Ceiling((double)totalItems / ItemsPerLoad);
 
