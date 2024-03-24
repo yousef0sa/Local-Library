@@ -132,6 +132,8 @@ namespace Local_library
 
             // Set up auto-complete
             Search_kryptonTextBox.AutoCompleteCustomSource = readJSON.GetTitles();
+
+            Change_items_per_page_kryptonTextBox.Text = ItemsPerLoad.ToString();
         }
 
         #region window border panel
@@ -293,6 +295,20 @@ namespace Local_library
 
                     await LoadItems(keySelected, Search_kryptonTextBox.Text);
                 }
+            }
+        }
+
+        /// <summary>
+        /// If the entered value is a valid integer, it updates the ItemsPerLoad property,
+        /// clears the item_Panel control, and triggers garbage collection.
+        /// </summary>
+        private void Change_items_per_page_kryptonTextBox_Leave(object sender, EventArgs e)
+        {
+            if (int.TryParse(Change_items_per_page_kryptonTextBox.Text, out int itemsPerPage))
+            {
+                ItemsPerLoad = itemsPerPage;
+                item_Panel.Controls.Clear();
+                GC.Collect();
             }
         }
         #endregion

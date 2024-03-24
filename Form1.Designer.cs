@@ -36,29 +36,29 @@
             this.maximize_kryptonButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.exit_kryptonButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.main_panel = new System.Windows.Forms.Panel();
+            this.Settings_panel = new System.Windows.Forms.Panel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Change_items_per_page_kryptonTextBox = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Json_path_label = new System.Windows.Forms.Label();
+            this.Change_json_path_kryptonButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Settings_kryptonButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.control_panel = new System.Windows.Forms.Panel();
             this.Previous_kryptonButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.Search_Page_kryptonTextBox = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.Next_kryptonButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.Items_label = new System.Windows.Forms.Label();
             this.Pages_label = new System.Windows.Forms.Label();
-            this.Settings_panel = new System.Windows.Forms.Panel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.Change_items_per_page_kryptonTextBox = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.Change_json_path_kryptonButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.Settings_kryptonButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.Json_path_label = new System.Windows.Forms.Label();
             this.Search_panel = new System.Windows.Forms.Panel();
             this.Window_Border_panel.SuspendLayout();
             this.main_panel.SuspendLayout();
-            this.control_panel.SuspendLayout();
             this.Settings_panel.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.control_panel.SuspendLayout();
             this.Search_panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -203,6 +203,153 @@
             this.main_panel.Size = new System.Drawing.Size(796, 446);
             this.main_panel.TabIndex = 2;
             // 
+            // Settings_panel
+            // 
+            this.Settings_panel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Settings_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Settings_panel.Controls.Add(this.groupBox2);
+            this.Settings_panel.Controls.Add(this.groupBox1);
+            this.Settings_panel.Controls.Add(this.label1);
+            this.Settings_panel.Controls.Add(this.Settings_kryptonButton);
+            this.Settings_panel.Location = new System.Drawing.Point(0, 290);
+            this.Settings_panel.Name = "Settings_panel";
+            this.Settings_panel.Size = new System.Drawing.Size(201, 156);
+            this.Settings_panel.TabIndex = 3;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.groupBox2.Controls.Add(this.Change_items_per_page_kryptonTextBox);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Location = new System.Drawing.Point(3, 66);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(191, 54);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            // 
+            // Change_items_per_page_kryptonTextBox
+            // 
+            this.Change_items_per_page_kryptonTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.Change_items_per_page_kryptonTextBox.Location = new System.Drawing.Point(115, 16);
+            this.Change_items_per_page_kryptonTextBox.Name = "Change_items_per_page_kryptonTextBox";
+            this.Change_items_per_page_kryptonTextBox.Size = new System.Drawing.Size(70, 29);
+            this.Change_items_per_page_kryptonTextBox.StateCommon.Back.Color1 = System.Drawing.Color.Black;
+            this.Change_items_per_page_kryptonTextBox.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
+            this.Change_items_per_page_kryptonTextBox.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
+            this.Change_items_per_page_kryptonTextBox.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.Change_items_per_page_kryptonTextBox.StateCommon.Border.Rounding = 2;
+            this.Change_items_per_page_kryptonTextBox.StateCommon.Border.Width = 2;
+            this.Change_items_per_page_kryptonTextBox.StateCommon.Content.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
+            this.Change_items_per_page_kryptonTextBox.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Change_items_per_page_kryptonTextBox.TabIndex = 6;
+            this.Change_items_per_page_kryptonTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Change_items_per_page_kryptonTextBox.Leave += new System.EventHandler(this.Change_items_per_page_kryptonTextBox_Leave);
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
+            this.label5.Location = new System.Drawing.Point(6, 21);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(103, 17);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Items Per Page:";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.groupBox1.Controls.Add(this.Json_path_label);
+            this.groupBox1.Controls.Add(this.Change_json_path_kryptonButton);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Location = new System.Drawing.Point(3, 8);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(191, 52);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            // 
+            // Json_path_label
+            // 
+            this.Json_path_label.AutoEllipsis = true;
+            this.Json_path_label.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Json_path_label.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.Json_path_label.Location = new System.Drawing.Point(3, 36);
+            this.Json_path_label.Name = "Json_path_label";
+            this.Json_path_label.Size = new System.Drawing.Size(185, 13);
+            this.Json_path_label.TabIndex = 8;
+            this.Json_path_label.Text = "P:";
+            // 
+            // Change_json_path_kryptonButton
+            // 
+            this.Change_json_path_kryptonButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.Change_json_path_kryptonButton.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.NavigatorMini;
+            this.Change_json_path_kryptonButton.Location = new System.Drawing.Point(87, 13);
+            this.Change_json_path_kryptonButton.Name = "Change_json_path_kryptonButton";
+            this.Change_json_path_kryptonButton.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
+            this.Change_json_path_kryptonButton.Size = new System.Drawing.Size(98, 20);
+            this.Change_json_path_kryptonButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
+            this.Change_json_path_kryptonButton.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
+            this.Change_json_path_kryptonButton.StateCommon.Content.LongText.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
+            this.Change_json_path_kryptonButton.StateCommon.Content.LongText.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
+            this.Change_json_path_kryptonButton.StateCommon.Content.LongText.Font = new System.Drawing.Font("Segoe UI", 8.75F, System.Drawing.FontStyle.Bold);
+            this.Change_json_path_kryptonButton.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
+            this.Change_json_path_kryptonButton.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
+            this.Change_json_path_kryptonButton.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Segoe UI", 8.75F, System.Drawing.FontStyle.Bold);
+            this.Change_json_path_kryptonButton.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(76)))), ((int)(((byte)(117)))));
+            this.Change_json_path_kryptonButton.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(76)))), ((int)(((byte)(117)))));
+            this.Change_json_path_kryptonButton.TabIndex = 7;
+            this.Change_json_path_kryptonButton.Values.Text = "Change...";
+            this.Change_json_path_kryptonButton.Click += new System.EventHandler(this.Change_json_path_kryptonButton_Click);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
+            this.label2.Location = new System.Drawing.Point(6, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 17);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "JSON path:";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
+            this.label1.Location = new System.Drawing.Point(151, 132);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 17);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "V 1.0.0";
+            // 
+            // Settings_kryptonButton
+            // 
+            this.Settings_kryptonButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.Settings_kryptonButton.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.NavigatorMini;
+            this.Settings_kryptonButton.Location = new System.Drawing.Point(-1, 126);
+            this.Settings_kryptonButton.Name = "Settings_kryptonButton";
+            this.Settings_kryptonButton.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
+            this.Settings_kryptonButton.Size = new System.Drawing.Size(69, 27);
+            this.Settings_kryptonButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
+            this.Settings_kryptonButton.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
+            this.Settings_kryptonButton.StateCommon.Content.LongText.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
+            this.Settings_kryptonButton.StateCommon.Content.LongText.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
+            this.Settings_kryptonButton.StateCommon.Content.LongText.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.Settings_kryptonButton.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
+            this.Settings_kryptonButton.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
+            this.Settings_kryptonButton.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.Settings_kryptonButton.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(76)))), ((int)(((byte)(117)))));
+            this.Settings_kryptonButton.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(76)))), ((int)(((byte)(117)))));
+            this.Settings_kryptonButton.TabIndex = 2;
+            this.Settings_kryptonButton.Values.Text = "Settings";
+            this.Settings_kryptonButton.Click += new System.EventHandler(this.Settings_kryptonButton_Click);
+            // 
             // control_panel
             // 
             this.control_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -307,154 +454,6 @@
             this.Pages_label.TabIndex = 2;
             this.Pages_label.Text = "Pages:";
             // 
-            // Settings_panel
-            // 
-            this.Settings_panel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.Settings_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Settings_panel.Controls.Add(this.groupBox2);
-            this.Settings_panel.Controls.Add(this.groupBox1);
-            this.Settings_panel.Controls.Add(this.label1);
-            this.Settings_panel.Controls.Add(this.Settings_kryptonButton);
-            this.Settings_panel.Location = new System.Drawing.Point(0, 297);
-            this.Settings_panel.Name = "Settings_panel";
-            this.Settings_panel.Size = new System.Drawing.Size(201, 149);
-            this.Settings_panel.TabIndex = 3;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.groupBox2.Controls.Add(this.Change_items_per_page_kryptonTextBox);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Location = new System.Drawing.Point(3, 59);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(191, 54);
-            this.groupBox2.TabIndex = 7;
-            this.groupBox2.TabStop = false;
-            // 
-            // Change_items_per_page_kryptonTextBox
-            // 
-            this.Change_items_per_page_kryptonTextBox.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.Change_items_per_page_kryptonTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.Change_items_per_page_kryptonTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.Change_items_per_page_kryptonTextBox.Location = new System.Drawing.Point(115, 16);
-            this.Change_items_per_page_kryptonTextBox.Name = "Change_items_per_page_kryptonTextBox";
-            this.Change_items_per_page_kryptonTextBox.Size = new System.Drawing.Size(70, 29);
-            this.Change_items_per_page_kryptonTextBox.StateCommon.Back.Color1 = System.Drawing.Color.Black;
-            this.Change_items_per_page_kryptonTextBox.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
-            this.Change_items_per_page_kryptonTextBox.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
-            this.Change_items_per_page_kryptonTextBox.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.Change_items_per_page_kryptonTextBox.StateCommon.Border.Rounding = 2;
-            this.Change_items_per_page_kryptonTextBox.StateCommon.Border.Width = 2;
-            this.Change_items_per_page_kryptonTextBox.StateCommon.Content.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
-            this.Change_items_per_page_kryptonTextBox.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Change_items_per_page_kryptonTextBox.TabIndex = 6;
-            this.Change_items_per_page_kryptonTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
-            this.label5.Location = new System.Drawing.Point(6, 21);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(103, 17);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Items Per Page:";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.groupBox1.Controls.Add(this.Json_path_label);
-            this.groupBox1.Controls.Add(this.Change_json_path_kryptonButton);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(3, 1);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(191, 52);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            // 
-            // Change_json_path_kryptonButton
-            // 
-            this.Change_json_path_kryptonButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.Change_json_path_kryptonButton.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.NavigatorMini;
-            this.Change_json_path_kryptonButton.Location = new System.Drawing.Point(87, 13);
-            this.Change_json_path_kryptonButton.Name = "Change_json_path_kryptonButton";
-            this.Change_json_path_kryptonButton.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
-            this.Change_json_path_kryptonButton.Size = new System.Drawing.Size(98, 20);
-            this.Change_json_path_kryptonButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
-            this.Change_json_path_kryptonButton.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
-            this.Change_json_path_kryptonButton.StateCommon.Content.LongText.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
-            this.Change_json_path_kryptonButton.StateCommon.Content.LongText.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
-            this.Change_json_path_kryptonButton.StateCommon.Content.LongText.Font = new System.Drawing.Font("Segoe UI", 8.75F, System.Drawing.FontStyle.Bold);
-            this.Change_json_path_kryptonButton.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
-            this.Change_json_path_kryptonButton.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
-            this.Change_json_path_kryptonButton.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Segoe UI", 8.75F, System.Drawing.FontStyle.Bold);
-            this.Change_json_path_kryptonButton.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(76)))), ((int)(((byte)(117)))));
-            this.Change_json_path_kryptonButton.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(76)))), ((int)(((byte)(117)))));
-            this.Change_json_path_kryptonButton.TabIndex = 7;
-            this.Change_json_path_kryptonButton.Values.Text = "Change...";
-            this.Change_json_path_kryptonButton.Click += new System.EventHandler(this.Change_json_path_kryptonButton_Click);
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
-            this.label2.Location = new System.Drawing.Point(6, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 17);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "JSON path:";
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
-            this.label1.Location = new System.Drawing.Point(151, 125);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 17);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "V 1.0.0";
-            // 
-            // Settings_kryptonButton
-            // 
-            this.Settings_kryptonButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.Settings_kryptonButton.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.NavigatorMini;
-            this.Settings_kryptonButton.Location = new System.Drawing.Point(-1, 119);
-            this.Settings_kryptonButton.Name = "Settings_kryptonButton";
-            this.Settings_kryptonButton.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
-            this.Settings_kryptonButton.Size = new System.Drawing.Size(69, 27);
-            this.Settings_kryptonButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
-            this.Settings_kryptonButton.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
-            this.Settings_kryptonButton.StateCommon.Content.LongText.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
-            this.Settings_kryptonButton.StateCommon.Content.LongText.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
-            this.Settings_kryptonButton.StateCommon.Content.LongText.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.Settings_kryptonButton.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
-            this.Settings_kryptonButton.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
-            this.Settings_kryptonButton.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.Settings_kryptonButton.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(76)))), ((int)(((byte)(117)))));
-            this.Settings_kryptonButton.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(76)))), ((int)(((byte)(117)))));
-            this.Settings_kryptonButton.TabIndex = 2;
-            this.Settings_kryptonButton.Values.Text = "Settings";
-            this.Settings_kryptonButton.Click += new System.EventHandler(this.Settings_kryptonButton_Click);
-            // 
-            // Json_path_label
-            // 
-            this.Json_path_label.AutoEllipsis = true;
-            this.Json_path_label.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Json_path_label.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.Json_path_label.Location = new System.Drawing.Point(3, 36);
-            this.Json_path_label.Name = "Json_path_label";
-            this.Json_path_label.Size = new System.Drawing.Size(185, 13);
-            this.Json_path_label.TabIndex = 8;
-            this.Json_path_label.Text = "P:";
-            // 
             // Search_panel
             // 
             this.Search_panel.Controls.Add(this.Search_kryptonTextBox);
@@ -479,14 +478,14 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Window_Border_panel.ResumeLayout(false);
             this.main_panel.ResumeLayout(false);
-            this.control_panel.ResumeLayout(false);
-            this.control_panel.PerformLayout();
             this.Settings_panel.ResumeLayout(false);
             this.Settings_panel.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.control_panel.ResumeLayout(false);
+            this.control_panel.PerformLayout();
             this.Search_panel.ResumeLayout(false);
             this.Search_panel.PerformLayout();
             this.ResumeLayout(false);
