@@ -9,13 +9,8 @@ namespace Local_library
     internal class GetNumbers
     {
         ReadJSON readJSON = new ReadJSON();
-        Form1 MainForm;
+        public string filePath { get; set; }
 
-        public GetNumbers(Form1 mainForm)
-        {
-            MainForm = mainForm;
-            readJSON.filePath = MainForm.FilePath;
-        }
 
         /// <summary>
         /// Gets the total number of items from the JSON data that contain the specified key.
@@ -24,6 +19,8 @@ namespace Local_library
         /// <returns>The total number of items that contain the specified key.</returns>
         public int GetTotalItemsWithJsonKey(string key)
         {
+            readJSON.filePath = filePath;
+
             return readJSON.GetJsonItems(key).Count;
         }
 
@@ -34,6 +31,7 @@ namespace Local_library
         /// <returns>The total number of items that contain the specified title.</returns>
         public int GetTotalItemsFormTitle(string title)
         {
+            readJSON.filePath = filePath;
             return readJSON.GetJsonItems().Where(x => x.title.ToLower().Contains(title.ToLower())).Count();
         }
     }

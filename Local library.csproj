@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="class\GetNumbers.cs" />
     <Compile Include="class\ReadJSON.cs" />
+    <Compile Include="class\Settings.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
