@@ -44,7 +44,7 @@
             this.Json_path_label = new System.Windows.Forms.Label();
             this.Change_json_path_kryptonButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Project_Version_label = new System.Windows.Forms.Label();
             this.Settings_kryptonButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.control_panel = new System.Windows.Forms.Panel();
             this.Previous_kryptonButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -209,7 +209,7 @@
             this.Settings_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Settings_panel.Controls.Add(this.groupBox2);
             this.Settings_panel.Controls.Add(this.groupBox1);
-            this.Settings_panel.Controls.Add(this.label1);
+            this.Settings_panel.Controls.Add(this.Project_Version_label);
             this.Settings_panel.Controls.Add(this.Settings_kryptonButton);
             this.Settings_panel.Location = new System.Drawing.Point(0, 417);
             this.Settings_panel.Name = "Settings_panel";
@@ -316,17 +316,17 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "JSON path:";
             // 
-            // label1
+            // Project_Version_label
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
-            this.label1.Location = new System.Drawing.Point(151, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 17);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "V 1.0.0";
+            this.Project_Version_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Project_Version_label.AutoSize = true;
+            this.Project_Version_label.Font = new System.Drawing.Font("Segoe UI Semibold", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Project_Version_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
+            this.Project_Version_label.Location = new System.Drawing.Point(140, 5);
+            this.Project_Version_label.Name = "Project_Version_label";
+            this.Project_Version_label.Size = new System.Drawing.Size(56, 17);
+            this.Project_Version_label.TabIndex = 4;
+            this.Project_Version_label.Text = "V:0.0.0.0";
             // 
             // Settings_kryptonButton
             // 
@@ -509,7 +509,7 @@
         private System.Windows.Forms.Label Items_label;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox Search_Page_kryptonTextBox;
         private System.Windows.Forms.Panel Settings_panel;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Project_Version_label;
         private ComponentFactory.Krypton.Toolkit.KryptonButton Settings_kryptonButton;
         private System.Windows.Forms.Panel control_panel;
         private System.Windows.Forms.GroupBox groupBox1;

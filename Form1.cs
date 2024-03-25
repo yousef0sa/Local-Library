@@ -22,6 +22,11 @@ namespace Local_library
 
         #region Get && Set
 
+        private string ProjectVersion
+        {
+            get { return Application.ProductVersion; }
+        }
+
         // setting the number of items to load per page
         public int ItemsPerLoad
         {
@@ -65,6 +70,7 @@ namespace Local_library
         /// <returns>A Task representing the asynchronous operation.</returns>
         private async Task LoadItems(string key, string searchText)
         {
+            // Load the items from the JSON file
             IEnumerable<items> items;
 
             if (!string.IsNullOrEmpty(searchText))
@@ -101,6 +107,9 @@ namespace Local_library
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Update the version label
+            Project_Version_label.Text = $"V:{ProjectVersion}";
+
             // Load the file path from the program settings
 
             if (!string.IsNullOrEmpty(FilePath))
