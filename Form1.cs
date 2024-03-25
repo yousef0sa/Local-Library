@@ -14,6 +14,8 @@ namespace Local_library
         private ReadJSON readJSON = new ReadJSON();
         private Settings settings = new Settings();
         private GetNumbers getNumbers = new GetNumbers();
+        private GitHubReleaseChecker checker;
+
         private string keySelected = "";
         private int currentPage = 1;
         private int totalPages = 0;
@@ -22,6 +24,7 @@ namespace Local_library
 
         #region Get && Set
 
+        // getting the project version
         private string ProjectVersion
         {
             get { return Application.ProductVersion; }
@@ -57,6 +60,9 @@ namespace Local_library
         public Form1()
         {
             InitializeComponent();
+
+            checker = new GitHubReleaseChecker("yousef0sa", "Test");
+
         }
 
 
@@ -105,10 +111,11 @@ namespace Local_library
             Next_kryptonButton.Enabled = items.Count() == ItemsPerLoad;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
+
             // Update the version label
-            Project_Version_label.Text = $"V:{ProjectVersion}";
+            Project_Version_label.Text = $"v{ProjectVersion}";
 
             // Load the file path from the program settings
 
@@ -143,6 +150,17 @@ namespace Local_library
             Search_kryptonTextBox.AutoCompleteCustomSource = readJSON.GetTitles();
 
             Change_items_per_page_kryptonTextBox.Text = ItemsPerLoad.ToString();
+
+            // Check for new releases
+            if (await checker.IsNewReleaseAvailable("v1"))
+            {
+                // if the new version is available show a message box and if the user press ok open the browser to the release page
+                if (MessageBox.Show("A new version is available, do you want to download it?", "New version available", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
+                {
+                    System.Diagnostics.Process.Start(checker.URL_lastest_release);
+                }
+
+            }
         }
 
         #region window border panel

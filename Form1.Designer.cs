@@ -47,9 +47,9 @@
             this.Project_Version_label = new System.Windows.Forms.Label();
             this.Settings_kryptonButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.control_panel = new System.Windows.Forms.Panel();
+            this.Next_kryptonButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.Previous_kryptonButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.Search_Page_kryptonTextBox = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.Next_kryptonButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.Items_label = new System.Windows.Forms.Label();
             this.Pages_label = new System.Windows.Forms.Label();
             this.Search_panel = new System.Windows.Forms.Panel();
@@ -324,9 +324,9 @@
             this.Project_Version_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
             this.Project_Version_label.Location = new System.Drawing.Point(140, 5);
             this.Project_Version_label.Name = "Project_Version_label";
-            this.Project_Version_label.Size = new System.Drawing.Size(56, 17);
+            this.Project_Version_label.Size = new System.Drawing.Size(52, 17);
             this.Project_Version_label.TabIndex = 4;
-            this.Project_Version_label.Text = "V:0.0.0.0";
+            this.Project_Version_label.Text = "v0.0.0.0";
             // 
             // Settings_kryptonButton
             // 
@@ -364,6 +364,28 @@
             this.control_panel.Name = "control_panel";
             this.control_panel.Size = new System.Drawing.Size(595, 29);
             this.control_panel.TabIndex = 5;
+            // 
+            // Next_kryptonButton
+            // 
+            this.Next_kryptonButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.Next_kryptonButton.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.NavigatorMini;
+            this.Next_kryptonButton.Location = new System.Drawing.Point(297, 0);
+            this.Next_kryptonButton.Name = "Next_kryptonButton";
+            this.Next_kryptonButton.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(76)))), ((int)(((byte)(117)))));
+            this.Next_kryptonButton.Size = new System.Drawing.Size(81, 28);
+            this.Next_kryptonButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
+            this.Next_kryptonButton.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
+            this.Next_kryptonButton.StateCommon.Content.LongText.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
+            this.Next_kryptonButton.StateCommon.Content.LongText.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
+            this.Next_kryptonButton.StateCommon.Content.LongText.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.Next_kryptonButton.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
+            this.Next_kryptonButton.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
+            this.Next_kryptonButton.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.Next_kryptonButton.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(76)))), ((int)(((byte)(117)))));
+            this.Next_kryptonButton.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(76)))), ((int)(((byte)(117)))));
+            this.Next_kryptonButton.TabIndex = 1;
+            this.Next_kryptonButton.Values.Text = "Next";
+            this.Next_kryptonButton.Click += new System.EventHandler(this.Next_kryptonButton_Click);
             // 
             // Previous_kryptonButton
             // 
@@ -408,28 +430,6 @@
             this.Search_Page_kryptonTextBox.TabIndex = 4;
             this.Search_Page_kryptonTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Search_Page_kryptonTextBox.TextChanged += new System.EventHandler(this.Search_Page_kryptonTextBox_TextChanged);
-            // 
-            // Next_kryptonButton
-            // 
-            this.Next_kryptonButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.Next_kryptonButton.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.NavigatorMini;
-            this.Next_kryptonButton.Location = new System.Drawing.Point(297, 0);
-            this.Next_kryptonButton.Name = "Next_kryptonButton";
-            this.Next_kryptonButton.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(76)))), ((int)(((byte)(117)))));
-            this.Next_kryptonButton.Size = new System.Drawing.Size(81, 28);
-            this.Next_kryptonButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
-            this.Next_kryptonButton.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
-            this.Next_kryptonButton.StateCommon.Content.LongText.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
-            this.Next_kryptonButton.StateCommon.Content.LongText.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
-            this.Next_kryptonButton.StateCommon.Content.LongText.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.Next_kryptonButton.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
-            this.Next_kryptonButton.StateCommon.Content.ShortText.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
-            this.Next_kryptonButton.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.Next_kryptonButton.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(76)))), ((int)(((byte)(117)))));
-            this.Next_kryptonButton.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(76)))), ((int)(((byte)(117)))));
-            this.Next_kryptonButton.TabIndex = 1;
-            this.Next_kryptonButton.Values.Text = "Next";
-            this.Next_kryptonButton.Click += new System.EventHandler(this.Next_kryptonButton_Click);
             // 
             // Items_label
             // 
