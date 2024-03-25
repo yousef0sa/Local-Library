@@ -354,9 +354,10 @@
             // 
             this.control_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.control_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.control_panel.Controls.Add(this.Next_kryptonButton);
             this.control_panel.Controls.Add(this.Previous_kryptonButton);
             this.control_panel.Controls.Add(this.Search_Page_kryptonTextBox);
-            this.control_panel.Controls.Add(this.Next_kryptonButton);
             this.control_panel.Controls.Add(this.Items_label);
             this.control_panel.Controls.Add(this.Pages_label);
             this.control_panel.Location = new System.Drawing.Point(201, 417);
@@ -368,10 +369,10 @@
             // 
             this.Previous_kryptonButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.Previous_kryptonButton.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.NavigatorMini;
-            this.Previous_kryptonButton.Location = new System.Drawing.Point(175, 2);
+            this.Previous_kryptonButton.Location = new System.Drawing.Point(174, 0);
             this.Previous_kryptonButton.Name = "Previous_kryptonButton";
             this.Previous_kryptonButton.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(76)))), ((int)(((byte)(117)))));
-            this.Previous_kryptonButton.Size = new System.Drawing.Size(81, 25);
+            this.Previous_kryptonButton.Size = new System.Drawing.Size(81, 28);
             this.Previous_kryptonButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
             this.Previous_kryptonButton.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
             this.Previous_kryptonButton.StateCommon.Content.LongText.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
@@ -393,7 +394,7 @@
             this.Search_Page_kryptonTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.Search_Page_kryptonTextBox.Location = new System.Drawing.Point(253, 1);
             this.Search_Page_kryptonTextBox.Name = "Search_Page_kryptonTextBox";
-            this.Search_Page_kryptonTextBox.Size = new System.Drawing.Size(45, 29);
+            this.Search_Page_kryptonTextBox.Size = new System.Drawing.Size(46, 29);
             this.Search_Page_kryptonTextBox.StateCommon.Back.Color1 = System.Drawing.Color.Black;
             this.Search_Page_kryptonTextBox.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
             this.Search_Page_kryptonTextBox.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
@@ -401,9 +402,9 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.Search_Page_kryptonTextBox.StateCommon.Border.Rounding = 2;
-            this.Search_Page_kryptonTextBox.StateCommon.Border.Width = 2;
+            this.Search_Page_kryptonTextBox.StateCommon.Border.Width = 1;
             this.Search_Page_kryptonTextBox.StateCommon.Content.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
-            this.Search_Page_kryptonTextBox.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Search_Page_kryptonTextBox.StateCommon.Content.Font = new System.Drawing.Font("Segoe UI Semibold", 10.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Search_Page_kryptonTextBox.TabIndex = 4;
             this.Search_Page_kryptonTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Search_Page_kryptonTextBox.TextChanged += new System.EventHandler(this.Search_Page_kryptonTextBox_TextChanged);
@@ -412,10 +413,10 @@
             // 
             this.Next_kryptonButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.Next_kryptonButton.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.NavigatorMini;
-            this.Next_kryptonButton.Location = new System.Drawing.Point(298, 2);
+            this.Next_kryptonButton.Location = new System.Drawing.Point(297, 0);
             this.Next_kryptonButton.Name = "Next_kryptonButton";
             this.Next_kryptonButton.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(76)))), ((int)(((byte)(117)))));
-            this.Next_kryptonButton.Size = new System.Drawing.Size(81, 25);
+            this.Next_kryptonButton.Size = new System.Drawing.Size(81, 28);
             this.Next_kryptonButton.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
             this.Next_kryptonButton.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
             this.Next_kryptonButton.StateCommon.Content.LongText.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
@@ -436,7 +437,7 @@
             this.Items_label.AutoSize = true;
             this.Items_label.Font = new System.Drawing.Font("Segoe UI Semibold", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Items_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
-            this.Items_label.Location = new System.Drawing.Point(5, 6);
+            this.Items_label.Location = new System.Drawing.Point(5, 4);
             this.Items_label.Name = "Items_label";
             this.Items_label.Size = new System.Drawing.Size(45, 17);
             this.Items_label.TabIndex = 3;
@@ -448,7 +449,7 @@
             this.Pages_label.AutoSize = true;
             this.Pages_label.Font = new System.Drawing.Font("Segoe UI Semibold", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Pages_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
-            this.Pages_label.Location = new System.Drawing.Point(398, 6);
+            this.Pages_label.Location = new System.Drawing.Point(397, 4);
             this.Pages_label.Name = "Pages_label";
             this.Pages_label.Size = new System.Drawing.Size(47, 17);
             this.Pages_label.TabIndex = 2;
