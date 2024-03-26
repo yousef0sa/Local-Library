@@ -32,16 +32,24 @@ public class GitHubReleaseChecker
     /// <returns>True if a new release is available, false otherwise.</returns>
     public async Task<bool> IsNewReleaseAvailable(string currentVersion)
     {
-        var url = $"https://api.github.com/repos/{_repoOwner}/{_repoName}/releases/latest";
-        _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("request"); // Necessary, GitHub requires a user-agent
+        try
+        {
+            var url = $"https://api.github.com/repos/{_repoOwner}/{_repoName}/releases/latest";
+            _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("request"); // Necessary, GitHub requires a user-agent
 
-        var response = await _httpClient.GetStringAsync(url);
-        var latestRelease = JObject.Parse(response);
-        var latestVersion = latestRelease["tag_name"].ToString();
+            var response = await _httpClient.GetStringAsync(url);
+            var latestRelease = JObject.Parse(response);
+            var latestVersion = latestRelease["tag_name"].ToString();
 
-        // set the URL of the latest release
-        URL_lastest_release = latestRelease["html_url"].ToString();
+            // set the URL of the latest release
+            URL_lastest_release = latestRelease["html_url"].ToString();
 
-        return !currentVersion.Equals(latestVersion, StringComparison.OrdinalIgnoreCase);
+            return !currentVersion.Equals(latestVersion, StringComparison.OrdinalIgnoreCase);
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+
     }
 }

@@ -113,29 +113,39 @@ namespace Local_library
 
         private async void Form1_Load(object sender, EventArgs e)
         {
+            // is the json file path exists
+            bool is_json_file_exists = false;
 
             // Update the version label
             Project_Version_label.Text = $"v{ProjectVersion}";
 
             // Load the file path from the program settings
-
-            if (!string.IsNullOrEmpty(FilePath))
+            if (!string.IsNullOrEmpty(FilePath) && System.IO.File.Exists(FilePath))
             {
                 readJSON.filePath = FilePath;
                 getNumbers.filePath = FilePath;
                 Json_path_label.Text = FilePath;
+
+                // json file exists
+                is_json_file_exists = true;
             }
             else
             {
-                if (settings.changeFilePath() == true)
+                // Activates the form and gives it focus.
+                this.Activate();
 
-                {   // Save the file path in the program settings
+                // if the file path is successfully changed
+                if (settings.changeFilePath() == true)
+                { 
+                   // Save the file path in the program settings
                     FilePath = settings.FilePath;
 
                     readJSON.filePath = FilePath;
                     getNumbers.filePath = FilePath;
                     Json_path_label.Text = FilePath;
 
+                    // json file exists
+                    is_json_file_exists = true;
                 }
                 else
                 {
@@ -143,13 +153,20 @@ namespace Local_library
                 }
             }
 
-            // load the content buttons
-            loadContentButtons();
+            // if the json file exists
+            if (is_json_file_exists == true)
+            {
 
-            // Set up auto-complete
-            Search_kryptonTextBox.AutoCompleteCustomSource = readJSON.GetTitles();
+                // load the content buttons
+                loadContentButtons();
 
-            Change_items_per_page_kryptonTextBox.Text = ItemsPerLoad.ToString();
+                // Set up auto-complete
+                Search_kryptonTextBox.AutoCompleteCustomSource = readJSON.GetTitles();
+
+                // show the number of items per page
+                Change_items_per_page_kryptonTextBox.Text = ItemsPerLoad.ToString();
+
+            }
 
             // Check for new releases
             if (await checker.IsNewReleaseAvailable("v1"))
@@ -274,6 +291,12 @@ namespace Local_library
         /// </summary>
         private void Search_kryptonTextBox_TextChanged(object sender, EventArgs e)
         {
+            // if file exists continue
+            if (System.IO.File.Exists(FilePath) == false)
+            {
+                return;
+            }
+
             // Cancel the previous search if it's still running
             if (searchTask != null && !searchTask.IsCompleted)
             {
@@ -310,6 +333,12 @@ namespace Local_library
         /// </summary>
         private async void Search_Page_kryptonTextBox_TextChanged(object sender, EventArgs e)
         {
+            // if file exists continue
+            if (System.IO.File.Exists(FilePath) == false)
+            {
+                return;
+            }
+
             if (int.TryParse(Search_Page_kryptonTextBox.Text, out int page))
             {
                 if (page > 0 && page <= totalPages)
