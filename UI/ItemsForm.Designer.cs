@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.Title_label = new System.Windows.Forms.Label();
+            this.Info_label = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,36 +45,36 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // label1
+            // Title_label
             // 
-            this.label1.AutoEllipsis = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
-            this.label1.Location = new System.Drawing.Point(0, 243);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(178, 17);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
+            this.Title_label.AutoEllipsis = true;
+            this.Title_label.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Title_label.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Title_label.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(225)))), ((int)(((byte)(250)))));
+            this.Title_label.Location = new System.Drawing.Point(0, 243);
+            this.Title_label.Name = "Title_label";
+            this.Title_label.Size = new System.Drawing.Size(178, 17);
+            this.Title_label.TabIndex = 1;
+            this.Title_label.Text = "Title";
             // 
-            // label2
+            // Info_label
             // 
-            this.label2.AutoEllipsis = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(0, 260);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(178, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "label2";
+            this.Info_label.AutoEllipsis = true;
+            this.Info_label.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Info_label.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.Info_label.Location = new System.Drawing.Point(0, 260);
+            this.Info_label.Name = "Info_label";
+            this.Info_label.Size = new System.Drawing.Size(178, 13);
+            this.Info_label.TabIndex = 2;
+            this.Info_label.Text = "Info";
             // 
             // ItemsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Info_label);
+            this.Controls.Add(this.Title_label);
             this.Controls.Add(this.pictureBox1);
             this.Name = "ItemsForm";
             this.Size = new System.Drawing.Size(178, 281);
@@ -88,7 +88,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label Title_label;
+        private System.Windows.Forms.Label Info_label;
     }
 }

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using ImageMagick;
+using System;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ImageMagick;
 
 namespace Local_library.UI
 {
@@ -37,8 +32,8 @@ namespace Local_library.UI
         private async void ItemsForm_Load(object sender, EventArgs e)
         {
             // load json data into the form
-            label1.Text = title.Replace("\r\n", string.Empty).Replace("\n", string.Empty);
-            label2.Text = info.Replace("\r\n", string.Empty).Replace("\n", string.Empty);
+            load_title(title);
+            load_info(info);
 
             // Start loading the image in the background
             await Task.Run(() => LoadImage());
@@ -52,22 +47,22 @@ namespace Local_library.UI
         /// </summary>
         private async Task LoadImage()
         {
-            string localDirectoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "LocalLibrary");
-            string localImagePath = Path.Combine(localDirectoryPath, this.image.GetHashCode().ToString());
-
-            // Create the directory if it doesn't exist
-            if (!Directory.Exists(localDirectoryPath))
+            if (!string.IsNullOrEmpty(this.image))
             {
-                Directory.CreateDirectory(localDirectoryPath);
-            }
+                string localDirectoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "LocalLibrary");
+                string localImagePath = Path.Combine(localDirectoryPath, this.image.GetHashCode().ToString());
 
-            if (!File.Exists(localImagePath))
-            {
-                using (System.Net.WebClient wc = new System.Net.WebClient())
+                // Create the directory if it doesn't exist
+                if (!Directory.Exists(localDirectoryPath))
                 {
-                    try
+                    Directory.CreateDirectory(localDirectoryPath);
+                }
+
+                if (!File.Exists(localImagePath))
+                {
+                    using (System.Net.WebClient wc = new System.Net.WebClient())
                     {
-                        if (!string.IsNullOrEmpty(this.image))
+                        try
                         {
                             // Ensure the URL is correctly formatted
                             Uri imageUri = new Uri(this.image);
@@ -114,43 +109,45 @@ namespace Local_library.UI
                                     }
                                 }
                             });
+
                         }
-                        else
+                        catch (System.Net.WebException ex)
                         {
-                            //change image to Local_library.Properties.Resources.no_image_available
+                            // Log the exception and show a user-friendly message
+                            Console.WriteLine(ex.ToString());
                             this.Invoke((MethodInvoker)delegate
                             {
-                                if (pictureBox1.Image != null)
-                                {
-                                    pictureBox1.Image.Dispose(); // Dispose the old image if it exists
-                                }
-                                pictureBox1.Image = Local_library.Properties.Resources.no_image_available;
+                                //MessageBox.Show("An error occurred while downloading the image. Please check your network connection and try again.");
 
                             });
                         }
                     }
-                    catch (System.Net.WebException ex)
-                    {
-                        // Log the exception and show a user-friendly message
-                        Console.WriteLine(ex.ToString());
-                        this.Invoke((MethodInvoker)delegate
-                        {
-                            //MessageBox.Show("An error occurred while downloading the image. Please check your network connection and try again.");
-
-                        });
-                    }
                 }
+                else
+                {
+                    // Load the image from the local file
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        if (pictureBox1.Image != null)
+                        {
+                            pictureBox1.Image.Dispose(); // Dispose the old image if it exists
+                        }
+                        pictureBox1.Image = Image.FromFile(localImagePath);
+                    });
+                }
+
             }
             else
             {
-                // Load the image from the local file
+                //change image to Local_library.Properties.Resources.no_image_available
                 this.Invoke((MethodInvoker)delegate
                 {
                     if (pictureBox1.Image != null)
                     {
                         pictureBox1.Image.Dispose(); // Dispose the old image if it exists
                     }
-                    pictureBox1.Image = Image.FromFile(localImagePath);
+                    pictureBox1.Image = Local_library.Properties.Resources.no_image_available;
+
                 });
             }
         }
@@ -162,7 +159,46 @@ namespace Local_library.UI
         private void ItemsForm_Click(object sender, EventArgs e)
         {
             // use the link to open the item in the browser
-            System.Diagnostics.Process.Start(link);
+            if (string.IsNullOrEmpty(link))
+            {
+                MessageBox.Show("No link available for this item.");
+            }
+            else
+            {
+                System.Diagnostics.Process.Start(link);
+            }
+        }
+
+        /// <summary>
+        /// Loads the title into the title label.
+        /// </summary>
+        /// <param name="title">The title to be loaded.</param>
+        private void load_title(string title)
+        {
+            if (string.IsNullOrEmpty(title))
+            {
+                Title_label.Text = "No title available";
+            }
+            else
+            {
+                Title_label.Text = title.Replace("\r\n", string.Empty).Replace("\n", string.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Loads the information into the info label.
+        /// </summary>
+        /// <param name="info">The information to be loaded.</param>
+        private void load_info(string info)
+        {
+            if (string.IsNullOrEmpty(info))
+            {
+                Info_label.Text = "No information available";
+            }
+            else
+            {
+                Info_label.Text = info.Replace("\r\n", string.Empty).Replace("\n", string.Empty);
+            }
         }
     }
 }
