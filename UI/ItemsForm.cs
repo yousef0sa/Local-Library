@@ -1,7 +1,9 @@
 ﻿using ImageMagick;
 using System;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
+using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -45,110 +47,27 @@ namespace Local_library.UI
         /// If the image is not already stored locally, it is downloaded from the URL and saved.
         /// The image is then displayed in the PictureBox control.
         /// </summary>
-        private async Task LoadImage()
+        internal async Task LoadImage()
         {
-            if (!string.IsNullOrEmpty(this.image))
+            if (!string.IsNullOrEmpty(this.image) && await IsValidImageUrl(this.image))
             {
-                string localDirectoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "LocalLibrary");
-                string localImagePath = Path.Combine(localDirectoryPath, this.image.GetHashCode().ToString());
+                string localDirectoryPath = GetLocalDirectoryPath();
+                string localImagePath = GetLocalImagePath(localDirectoryPath);
 
-                // Create the directory if it doesn't exist
-                if (!Directory.Exists(localDirectoryPath))
-                {
-                    Directory.CreateDirectory(localDirectoryPath);
-                }
+                CreateDirectoryIfNotExists(localDirectoryPath);
 
                 if (!File.Exists(localImagePath))
                 {
-                    using (System.Net.WebClient wc = new System.Net.WebClient())
-                    {
-                        try
-                        {
-                            // Ensure the URL is correctly formatted
-                            Uri imageUri = new Uri(this.image);
-                            byte[] bytes = await wc.DownloadDataTaskAsync(imageUri);
-                            await Task.Run(() =>
-                            {
-                                using (MemoryStream ms = new MemoryStream(bytes))
-                                {
-                                    using (MagickImage magickImage = new MagickImage(ms))
-                                    {
-                                        magickImage.Format = MagickFormat.Png;
-                                        byte[] imageBytes;
-                                        using (MemoryStream output = new MemoryStream())
-                                        {
-                                            magickImage.Write(output);
-                                            output.Position = 0;
-                                            imageBytes = output.ToArray(); // Save the bytes to a variable
-                                        }
-
-                                        try
-                                        {
-                                            // Save the image locally
-                                            File.WriteAllBytes(localImagePath, imageBytes);
-                                        }
-                                        catch
-                                        {
-                                            // Log the exception and show a user-friendly message
-                                            Console.WriteLine("An error occurred while saving the image to the local storage.");
-                                            this.Invoke((MethodInvoker)delegate
-                                            {
-                                                //MessageBox.Show("An error occurred while saving the image to the local storage. Please check your disk space and try again.");
-                                            });
-                                        }
-
-                                        // Update the PictureBox on the UI thread
-                                        this.Invoke((MethodInvoker)delegate
-                                        {
-                                            if (pictureBox1.Image != null)
-                                            {
-                                                pictureBox1.Image.Dispose(); // Dispose the old image if it exists
-                                            }
-                                            pictureBox1.Image = Image.FromStream(new MemoryStream(imageBytes));
-                                        });
-                                    }
-                                }
-                            });
-
-                        }
-                        catch (System.Net.WebException ex)
-                        {
-                            // Log the exception and show a user-friendly message
-                            Console.WriteLine(ex.ToString());
-                            this.Invoke((MethodInvoker)delegate
-                            {
-                                //MessageBox.Show("An error occurred while downloading the image. Please check your network connection and try again.");
-
-                            });
-                        }
-                    }
+                    await DownloadAndSaveImage(localDirectoryPath, localImagePath);
                 }
                 else
                 {
-                    // Load the image from the local file
-                    this.Invoke((MethodInvoker)delegate
-                    {
-                        if (pictureBox1.Image != null)
-                        {
-                            pictureBox1.Image.Dispose(); // Dispose the old image if it exists
-                        }
-                        pictureBox1.Image = Image.FromFile(localImagePath);
-                    });
+                    LoadImageFromLocalFile(localImagePath);
                 }
-
             }
             else
             {
-                //change image to Local_library.Properties.Resources.no_image_available
-                this.Invoke((MethodInvoker)delegate
-                {
-                    if (pictureBox1.Image != null)
-                    {
-                        pictureBox1.Image.Dispose(); // Dispose the old image if it exists
-                    }
-                    pictureBox1.Image = Local_library.Properties.Resources.no_image_available;
-
-                });
+                LoadDefaultImage();
             }
         }
 
@@ -156,7 +75,7 @@ namespace Local_library.UI
         /// Event handler for the click event of the ItemsForm control.
         /// Opens the associated link in the default web browser.
         /// </summary>
-        private void ItemsForm_Click(object sender, EventArgs e)
+        internal void ItemsForm_Click(object sender, EventArgs e)
         {
             // use the link to open the item in the browser
             if (string.IsNullOrEmpty(link))
@@ -173,7 +92,7 @@ namespace Local_library.UI
         /// Loads the title into the title label.
         /// </summary>
         /// <param name="title">The title to be loaded.</param>
-        private void load_title(string title)
+        internal void load_title(string title)
         {
             if (string.IsNullOrEmpty(title))
             {
@@ -189,7 +108,7 @@ namespace Local_library.UI
         /// Loads the information into the info label.
         /// </summary>
         /// <param name="info">The information to be loaded.</param>
-        private void load_info(string info)
+        internal void load_info(string info)
         {
             if (string.IsNullOrEmpty(info))
             {
@@ -200,6 +119,190 @@ namespace Local_library.UI
                 Info_label.Text = info.Replace("\r\n", string.Empty).Replace("\n", string.Empty);
             }
         }
+
+        #region private Methods
+
+        #region {LoadImage} Methods
+        /// <summary>
+        /// Gets the local directory path.
+        /// </summary>
+        /// <returns>The local directory path.</returns>
+        private string GetLocalDirectoryPath()
+        {
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "LocalLibrary");
+        }
+
+        /// <summary>
+        /// Gets the local image path based on the local directory path.
+        /// </summary>
+        /// <param name="localDirectoryPath">The local directory path.</param>
+        /// <returns>The local image path.</returns>
+        private string GetLocalImagePath(string localDirectoryPath)
+        {
+            return Path.Combine(localDirectoryPath, this.image.GetHashCode().ToString());
+        }
+
+        /// <summary>
+        /// Creates a directory if it doesn't already exist.
+        /// </summary>
+        /// <param name="localDirectoryPath">The local directory path.</param>
+        private void CreateDirectoryIfNotExists(string localDirectoryPath)
+        {
+            if (!Directory.Exists(localDirectoryPath))
+            {
+                Directory.CreateDirectory(localDirectoryPath);
+            }
+        }
+
+        /// <summary>
+        /// Asynchronously downloads and saves an image from a URL or local storage.
+        /// </summary>
+        /// <param name="localDirectoryPath">The local directory path to save the image.</param>
+        /// <param name="localImagePath">The local file path to save the image.</param>
+        internal async Task DownloadAndSaveImage(string localDirectoryPath, string localImagePath)
+        {
+            using (System.Net.WebClient wc = new System.Net.WebClient())
+            {
+                try
+                {
+                    Uri imageUri = new Uri(this.image);
+                    byte[] bytes = await wc.DownloadDataTaskAsync(imageUri);
+                    await SaveImageToLocal(bytes, localImagePath);
+                }
+                catch (System.Net.WebException ex)
+                {
+                    LogAndShowErrorMessage(ex.ToString());
+                }
+            }
+        }
+
+        /// <summary>
+        /// Asynchronously saves an image to the local storage.
+        /// </summary>
+        /// <param name="bytes">The byte array representing the image.</param>
+        /// <param name="localImagePath">The local file path to save the image.</param>
+        private async Task SaveImageToLocal(byte[] bytes, string localImagePath)
+        {
+            await Task.Run(() =>
+            {
+                using (MemoryStream ms = new MemoryStream(bytes))
+                {
+                    using (MagickImage magickImage = new MagickImage(ms))
+                    {
+                        magickImage.Format = MagickFormat.Png;
+                        byte[] imageBytes;
+                        using (MemoryStream output = new MemoryStream())
+                        {
+                            magickImage.Write(output);
+                            output.Position = 0;
+
+                            imageBytes = output.ToArray();
+                        }
+
+                        try
+                        {
+                            File.WriteAllBytes(localImagePath, imageBytes);
+                        }
+                        catch
+                        {
+                            LogAndShowErrorMessage("An error occurred while saving the image to the local storage.");
+                        }
+
+                        UpdatePictureBox(imageBytes);
+                    }
+                }
+            });
+        }
+
+
+        /// <summary>
+        /// Logs the error message and shows it in the console.
+        /// </summary>
+        /// <param name="message">The error message to be logged and shown.</param>
+        private void LogAndShowErrorMessage(string message)
+        {
+            Console.WriteLine(message);
+            this.Invoke((MethodInvoker)delegate
+            {
+                //MessageBox.Show(message);
+            });
+        }
+
+        /// <summary>
+        /// Updates the PictureBox control with the specified image bytes.
+        /// </summary>
+        /// <param name="imageBytes">The byte array representing the image.</param>
+        private void UpdatePictureBox(byte[] imageBytes)
+        {
+            this.Invoke((MethodInvoker)delegate
+            {
+                if (pictureBox1.Image != null)
+                {
+                    pictureBox1.Image.Dispose();
+                }
+                using (var ms = new MemoryStream(imageBytes))
+                {
+                    pictureBox1.Image = Image.FromStream(ms);
+                }
+            });
+        }
+
+        /// <summary>
+        /// Loads the image from a local file path and displays it in the PictureBox control.
+        /// </summary>
+        /// <param name="localImagePath">The local file path of the image.</param>
+        private void LoadImageFromLocalFile(string localImagePath)
+        {
+            this.Invoke((MethodInvoker)delegate
+            {
+                if (pictureBox1.Image != null)
+                {
+                    pictureBox1.Image.Dispose();
+                }
+                pictureBox1.Image = Image.FromFile(localImagePath);
+            });
+        }
+
+        /// <summary>
+        /// Loads the default image into the PictureBox control.
+        /// </summary>
+        private void LoadDefaultImage()
+        {
+            this.Invoke((MethodInvoker)delegate
+            {
+                if (pictureBox1.Image != null)
+                {
+                    pictureBox1.Image.Dispose();
+                }
+                pictureBox1.Image = Local_library.Properties.Resources.no_image_available;
+            });
+        }
+
+        /// <summary>
+        /// Checks if the given image URL is valid.
+        /// </summary>
+        /// <param name="imageUrl">The URL of the image.</param>
+        /// <returns>True if the image URL is valid; otherwise, false.</returns>
+        internal async Task<bool> IsValidImageUrl(string imageUrl)
+        {
+            try
+            {
+                var request = WebRequest.Create(imageUrl);
+                request.Method = "HEAD";
+                request.Timeout = 5000; // Set timeout to 5 seconds
+                using (var response = await request.GetResponseAsync())
+                {
+                    return response.ContentType.ToLower(CultureInfo.InvariantCulture).StartsWith("image/");
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        #endregion
+
+        #endregion
     }
 }
 

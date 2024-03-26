@@ -86,9 +86,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label Title_label;
-        private System.Windows.Forms.Label Info_label;
+        internal System.Windows.Forms.PictureBox pictureBox1;
+        internal System.Windows.Forms.Label Title_label;
+        internal System.Windows.Forms.Label Info_label;
     }
 }
