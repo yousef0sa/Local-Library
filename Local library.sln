@@ -7,20 +7,25 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Local library", "Local libr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "..\UnitTest\UnitTest.csproj", "{785D1F56-19D6-452D-BA70-1A9D1BE28123}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Local library Setup", "..\Local library Setup\Local library Setup.vdproj", "{0A955DDF-62B7-45E0-9DFE-92B69D14676E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E7DA0CE5-35DC-4B82-BD5E-647702E4C016}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E7DA0CE5-35DC-4B82-BD5E-647702E4C016}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7DA0CE5-35DC-4B82-BD5E-647702E4C016}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{E7DA0CE5-35DC-4B82-BD5E-647702E4C016}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{E7DA0CE5-35DC-4B82-BD5E-647702E4C016}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7DA0CE5-35DC-4B82-BD5E-647702E4C016}.Release|Any CPU.Build.0 = Release|Any CPU
 		{785D1F56-19D6-452D-BA70-1A9D1BE28123}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{785D1F56-19D6-452D-BA70-1A9D1BE28123}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{785D1F56-19D6-452D-BA70-1A9D1BE28123}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{785D1F56-19D6-452D-BA70-1A9D1BE28123}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A955DDF-62B7-45E0-9DFE-92B69D14676E}.Debug|Any CPU.ActiveCfg = Release
+		{0A955DDF-62B7-45E0-9DFE-92B69D14676E}.Debug|Any CPU.Build.0 = Release
+		{0A955DDF-62B7-45E0-9DFE-92B69D14676E}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
