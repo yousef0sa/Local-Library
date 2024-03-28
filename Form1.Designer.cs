@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.item_Panel = new System.Windows.Forms.FlowLayoutPanel();
             this.content_Panel = new System.Windows.Forms.FlowLayoutPanel();
             this.Search_kryptonTextBox = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
@@ -36,6 +37,9 @@
             this.maximize_kryptonButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.exit_kryptonButton = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.main_panel = new System.Windows.Forms.Panel();
+            this.All_left_side_panel = new System.Windows.Forms.Panel();
+            this.Search_panel = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Settings_panel = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.Change_items_per_page_kryptonTextBox = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
@@ -52,18 +56,15 @@
             this.Search_Page_kryptonTextBox = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.Items_label = new System.Windows.Forms.Label();
             this.Pages_label = new System.Windows.Forms.Label();
-            this.Search_panel = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.All_left_side_panel = new System.Windows.Forms.Panel();
             this.Window_Border_panel.SuspendLayout();
             this.main_panel.SuspendLayout();
+            this.All_left_side_panel.SuspendLayout();
+            this.Search_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.Settings_panel.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.control_panel.SuspendLayout();
-            this.Search_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.All_left_side_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // item_Panel
@@ -205,6 +206,39 @@
             this.main_panel.Name = "main_panel";
             this.main_panel.Size = new System.Drawing.Size(796, 446);
             this.main_panel.TabIndex = 2;
+            // 
+            // All_left_side_panel
+            // 
+            this.All_left_side_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.All_left_side_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(25)))), ((int)(((byte)(29)))));
+            this.All_left_side_panel.Controls.Add(this.Search_panel);
+            this.All_left_side_panel.Controls.Add(this.Settings_panel);
+            this.All_left_side_panel.Controls.Add(this.content_Panel);
+            this.All_left_side_panel.Location = new System.Drawing.Point(0, 32);
+            this.All_left_side_panel.Name = "All_left_side_panel";
+            this.All_left_side_panel.Size = new System.Drawing.Size(203, 414);
+            this.All_left_side_panel.TabIndex = 0;
+            // 
+            // Search_panel
+            // 
+            this.Search_panel.Controls.Add(this.Search_kryptonTextBox);
+            this.Search_panel.Controls.Add(this.pictureBox1);
+            this.Search_panel.Location = new System.Drawing.Point(0, 0);
+            this.Search_panel.Name = "Search_panel";
+            this.Search_panel.Size = new System.Drawing.Size(200, 34);
+            this.Search_panel.TabIndex = 3;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(27, 34);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
             // 
             // Settings_panel
             // 
@@ -458,39 +492,6 @@
             this.Pages_label.TabIndex = 2;
             this.Pages_label.Text = "Pages:";
             // 
-            // Search_panel
-            // 
-            this.Search_panel.Controls.Add(this.Search_kryptonTextBox);
-            this.Search_panel.Controls.Add(this.pictureBox1);
-            this.Search_panel.Location = new System.Drawing.Point(0, 0);
-            this.Search_panel.Name = "Search_panel";
-            this.Search_panel.Size = new System.Drawing.Size(200, 34);
-            this.Search_panel.TabIndex = 3;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pictureBox1.Image = global::Local_library.Properties.Resources.search;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(27, 34);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
-            // All_left_side_panel
-            // 
-            this.All_left_side_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.All_left_side_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(25)))), ((int)(((byte)(29)))));
-            this.All_left_side_panel.Controls.Add(this.Search_panel);
-            this.All_left_side_panel.Controls.Add(this.Settings_panel);
-            this.All_left_side_panel.Controls.Add(this.content_Panel);
-            this.All_left_side_panel.Location = new System.Drawing.Point(0, 32);
-            this.All_left_side_panel.Name = "All_left_side_panel";
-            this.All_left_side_panel.Size = new System.Drawing.Size(203, 414);
-            this.All_left_side_panel.TabIndex = 0;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -499,13 +500,18 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.main_panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 450);
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(2);
-            this.Text = "Form1";
+            this.Text = "Local library";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Window_Border_panel.ResumeLayout(false);
             this.main_panel.ResumeLayout(false);
+            this.All_left_side_panel.ResumeLayout(false);
+            this.Search_panel.ResumeLayout(false);
+            this.Search_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.Settings_panel.ResumeLayout(false);
             this.Settings_panel.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -514,10 +520,6 @@
             this.groupBox1.PerformLayout();
             this.control_panel.ResumeLayout(false);
             this.control_panel.PerformLayout();
-            this.Search_panel.ResumeLayout(false);
-            this.Search_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.All_left_side_panel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
