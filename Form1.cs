@@ -168,7 +168,7 @@ namespace Local_library
             }
 
             // Check for new releases
-            if (await checker.IsNewReleaseAvailable("v1"))
+            if (await checker.IsNewReleaseAvailable(ProjectVersion))
             {
                 // if the new version is available show a message box and if the user press ok open the browser to the release page
                 if (MessageBox.Show("A new version is available, do you want to download it?", "New version available", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
