@@ -53,6 +53,8 @@
             this.Items_label = new System.Windows.Forms.Label();
             this.Pages_label = new System.Windows.Forms.Label();
             this.Search_panel = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.All_left_side_panel = new System.Windows.Forms.Panel();
             this.Window_Border_panel.SuspendLayout();
             this.main_panel.SuspendLayout();
             this.Settings_panel.SuspendLayout();
@@ -60,6 +62,8 @@
             this.groupBox1.SuspendLayout();
             this.control_panel.SuspendLayout();
             this.Search_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.All_left_side_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // item_Panel
@@ -81,18 +85,18 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.content_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(25)))), ((int)(((byte)(29)))));
             this.content_Panel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.content_Panel.Location = new System.Drawing.Point(0, 70);
+            this.content_Panel.Location = new System.Drawing.Point(0, 40);
             this.content_Panel.Name = "content_Panel";
-            this.content_Panel.Size = new System.Drawing.Size(201, 376);
+            this.content_Panel.Size = new System.Drawing.Size(201, 374);
             this.content_Panel.TabIndex = 1;
             // 
             // Search_kryptonTextBox
             // 
             this.Search_kryptonTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.Search_kryptonTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.Search_kryptonTextBox.Location = new System.Drawing.Point(3, 3);
+            this.Search_kryptonTextBox.Location = new System.Drawing.Point(24, 3);
             this.Search_kryptonTextBox.Name = "Search_kryptonTextBox";
-            this.Search_kryptonTextBox.Size = new System.Drawing.Size(192, 29);
+            this.Search_kryptonTextBox.Size = new System.Drawing.Size(174, 29);
             this.Search_kryptonTextBox.StateCommon.Back.Color1 = System.Drawing.Color.Black;
             this.Search_kryptonTextBox.StateCommon.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
             this.Search_kryptonTextBox.StateCommon.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
@@ -192,10 +196,9 @@
             // 
             // main_panel
             // 
+            this.main_panel.Controls.Add(this.All_left_side_panel);
             this.main_panel.Controls.Add(this.item_Panel);
-            this.main_panel.Controls.Add(this.Settings_panel);
             this.main_panel.Controls.Add(this.control_panel);
-            this.main_panel.Controls.Add(this.content_Panel);
             this.main_panel.Controls.Add(this.Window_Border_panel);
             this.main_panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.main_panel.Location = new System.Drawing.Point(2, 2);
@@ -205,15 +208,15 @@
             // 
             // Settings_panel
             // 
-            this.Settings_panel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Settings_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Settings_panel.Controls.Add(this.groupBox2);
             this.Settings_panel.Controls.Add(this.groupBox1);
             this.Settings_panel.Controls.Add(this.Project_Version_label);
             this.Settings_panel.Controls.Add(this.Settings_kryptonButton);
-            this.Settings_panel.Location = new System.Drawing.Point(0, 417);
+            this.Settings_panel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Settings_panel.Location = new System.Drawing.Point(0, 385);
             this.Settings_panel.Name = "Settings_panel";
-            this.Settings_panel.Size = new System.Drawing.Size(201, 29);
+            this.Settings_panel.Size = new System.Drawing.Size(203, 29);
             this.Settings_panel.TabIndex = 3;
             // 
             // groupBox2
@@ -221,7 +224,7 @@
             this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.groupBox2.Controls.Add(this.Change_items_per_page_kryptonTextBox);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Location = new System.Drawing.Point(3, -61);
+            this.groupBox2.Location = new System.Drawing.Point(4, -61);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(191, 54);
             this.groupBox2.TabIndex = 7;
@@ -265,7 +268,7 @@
             this.groupBox1.Controls.Add(this.Json_path_label);
             this.groupBox1.Controls.Add(this.Change_json_path_kryptonButton);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(3, -119);
+            this.groupBox1.Location = new System.Drawing.Point(4, -119);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(191, 52);
             this.groupBox1.TabIndex = 6;
@@ -332,7 +335,7 @@
             // 
             this.Settings_kryptonButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.Settings_kryptonButton.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.NavigatorMini;
-            this.Settings_kryptonButton.Location = new System.Drawing.Point(-1, -1);
+            this.Settings_kryptonButton.Location = new System.Drawing.Point(0, -1);
             this.Settings_kryptonButton.Name = "Settings_kryptonButton";
             this.Settings_kryptonButton.OverrideDefault.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(38)))), ((int)(((byte)(44)))));
             this.Settings_kryptonButton.Size = new System.Drawing.Size(69, 27);
@@ -458,10 +461,35 @@
             // Search_panel
             // 
             this.Search_panel.Controls.Add(this.Search_kryptonTextBox);
-            this.Search_panel.Location = new System.Drawing.Point(2, 34);
+            this.Search_panel.Controls.Add(this.pictureBox1);
+            this.Search_panel.Location = new System.Drawing.Point(0, 0);
             this.Search_panel.Name = "Search_panel";
             this.Search_panel.Size = new System.Drawing.Size(200, 34);
             this.Search_panel.TabIndex = 3;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBox1.Image = global::Local_library.Properties.Resources.search;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(27, 34);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
+            // All_left_side_panel
+            // 
+            this.All_left_side_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.All_left_side_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(25)))), ((int)(((byte)(29)))));
+            this.All_left_side_panel.Controls.Add(this.Search_panel);
+            this.All_left_side_panel.Controls.Add(this.Settings_panel);
+            this.All_left_side_panel.Controls.Add(this.content_Panel);
+            this.All_left_side_panel.Location = new System.Drawing.Point(0, 32);
+            this.All_left_side_panel.Name = "All_left_side_panel";
+            this.All_left_side_panel.Size = new System.Drawing.Size(203, 414);
+            this.All_left_side_panel.TabIndex = 0;
             // 
             // Form1
             // 
@@ -469,7 +497,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.Search_panel);
             this.Controls.Add(this.main_panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(800, 450);
@@ -489,6 +516,8 @@
             this.control_panel.PerformLayout();
             this.Search_panel.ResumeLayout(false);
             this.Search_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.All_left_side_panel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -520,6 +549,8 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton Change_json_path_kryptonButton;
         private System.Windows.Forms.Label Json_path_label;
         private System.Windows.Forms.Panel Search_panel;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel All_left_side_panel;
     }
 }
 

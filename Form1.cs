@@ -61,8 +61,7 @@ namespace Local_library
         {
             InitializeComponent();
 
-            checker = new GitHubReleaseChecker("yousef0sa", "Test");
-
+            checker = new GitHubReleaseChecker("yousef0sa", "Local-Library");
         }
 
 
@@ -316,6 +315,7 @@ namespace Local_library
                     itemsLoaded = 0;
                     GC.Collect();
                     var search = Search_kryptonTextBox.Text;
+                    currentPage = 1;
                     UpdateItemsLabel(search);
                     UpdatePagesLabel(search);
 
@@ -545,10 +545,11 @@ namespace Local_library
                         itemsLoaded = 0;
                         currentPage = 1;
                         Search_kryptonTextBox.Text = "";
-                        GC.Collect();
                         await LoadItems(key, Search_Text);
                         UpdatePagesLabel(Search_Text);
                         UpdateItemsLabel(Search_Text);
+
+                        GC.Collect();
                     };
                     content_Panel.Controls.Add(button);
                 }
@@ -577,6 +578,8 @@ namespace Local_library
                 totalItems = getNumbers.GetTotalItemsWithJsonKey(keySelected);
             }
             Items_label.Text = $"Total Items: {totalItems}";
+
+            GC.Collect();
         }
         /// <summary>
         /// Updates the Pages_label text to display the current page and total pages.
@@ -601,6 +604,8 @@ namespace Local_library
             Pages_label.Text = $"Page: {currentPage} - {totalPages}";
 
             Search_Page_kryptonTextBox.Text = currentPage.ToString();
+
+            GC.Collect();
         }
         #endregion
     }
